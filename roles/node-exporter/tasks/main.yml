@@ -1,0 +1,30 @@
+---
+- name: fetch service facts                                                                                                                                                                                                                 
+  ansible.builtin.service_facts:   
+
+- name: Ensure the port is accessible
+  ansible.posix.firewalld:
+    port: "{{ node_exporter_port }}/tcp"
+    permanent: true
+    state: enabled
+  when: ansible_facts.services['firewalld.service']['state'] == "running"   
+
+- name: pull the node_exporter image
+  shell: "podman pull {{ node_exporter_image }}:{{ node_exporter_tag }}"
+
+- name: deploy the node_exporter systemd file
+  ansible.builtin.template:
+    src: node-exporter.service.j2
+    dest: /etc/systemd/system/node-exporter.service
+ 
+- name: reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: enable and start node-exporter
+  ansible.builtin.systemd:
+    name: node-exporter
+    enabled: true
+    state: started
+  
+

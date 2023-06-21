@@ -1,0 +1,30 @@
+---
+- name: fetch service facts                                                                                                                                                                                                                 
+  ansible.builtin.service_facts:   
+
+- name: Ensure the port is accessible
+  ansible.posix.firewalld:
+    port: "{{ process_exporter_port }}/tcp"
+    permanent: true
+    state: enabled
+  when: ansible_facts.services['firewalld.service']['state'] == "running"   
+
+- name: pull the process-exporter image
+  shell: "podman pull {{ process_exporter_image }}:{{ process_exporter_tag }}"
+
+- name: deploy the process-exporter systemd file
+  ansible.builtin.template:
+    src: process-exporter.service.j2
+    dest: /etc/systemd/system/process-exporter.service
+ 
+- name: reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: enable and start process-exporter
+  ansible.builtin.systemd:
+    name: process-exporter
+    enabled: true
+    state: started
+  
+

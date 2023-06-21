@@ -1,0 +1,125 @@
+{
+  "description": "Current Ops",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 74,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-20T07:40:42Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-20T07:40:42Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "Current Ops",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "decimals": 0,
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "locale"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 3,
+      "x": 21,
+      "y": 5
+    },
+    "id": 179,
+    "libraryPanel": {
+      "name": "Object Ops"
+    },
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.1.6",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum(rate(ceph_rgw_get[40s])) + sum(rate(ceph_rgw_put[40s]))",
+        "hide": false,
+        "legendFormat": "Total",
+        "range": true,
+        "refId": "C"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum(rate(ceph_rgw_get[40s]))",
+        "legendFormat": "GETs",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum(rate(ceph_rgw_put[40s]))",
+        "hide": false,
+        "legendFormat": "PUTs",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "title": "Object Ops",
+    "type": "stat"
+  },
+  "name": "Object Ops",
+  "orgId": 1,
+  "type": "stat",
+  "uid": "PXaSBhu4k",
+  "version": 1
+}

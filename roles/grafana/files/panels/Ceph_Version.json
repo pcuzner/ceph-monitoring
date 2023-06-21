@@ -1,0 +1,144 @@
+{
+  "description": "Based on Mon version",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 38,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 2,
+    "created": "2023-05-11T02:41:26Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-05-15T04:41:11Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "Based on Mon version",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "custom": {
+          "align": "center",
+          "displayMode": "auto",
+          "inspect": false
+        },
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 3,
+      "w": 2,
+      "x": 0,
+      "y": 5
+    },
+    "id": 228,
+    "libraryPanel": {
+      "meta": {
+        "connectedDashboards": 0,
+        "created": "2023-05-11T02:41:26.748644799Z",
+        "createdBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        },
+        "folderName": "",
+        "folderUid": "",
+        "updated": "2023-05-11T02:41:26.748644875Z",
+        "updatedBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        }
+      },
+      "name": "Ceph Version",
+      "uid": "9E94WS84z",
+      "version": 1
+    },
+    "options": {
+      "footer": {
+        "fields": "",
+        "reducer": [
+          "sum"
+        ],
+        "show": false
+      },
+      "showHeader": false
+    },
+    "pluginVersion": "9.1.6",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "topk(1,label_replace(ceph_mon_metadata,\"version\",\"$1\",\"ceph_version\",\"ceph version (.*) (.*) (.*) (.*)\"))",
+        "format": "table",
+        "instant": true,
+        "legendFormat": "__auto",
+        "range": false,
+        "refId": "A"
+      }
+    ],
+    "title": "Ceph Version",
+    "transformations": [
+      {
+        "id": "organize",
+        "options": {
+          "excludeByName": {
+            "Time": true,
+            "Value": true,
+            "__name__": true,
+            "ceph_daemon": true,
+            "ceph_version": true,
+            "hostname": true,
+            "instance": true,
+            "job": true,
+            "public_addr": true,
+            "rank": true
+          },
+          "indexByName": {},
+          "renameByName": {
+            "version": ""
+          }
+        }
+      }
+    ],
+    "type": "table"
+  },
+  "name": "Ceph Version",
+  "orgId": 1,
+  "type": "table",
+  "uid": "9E94WS84z",
+  "version": 2
+}

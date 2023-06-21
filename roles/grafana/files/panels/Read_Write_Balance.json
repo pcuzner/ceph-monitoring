@@ -1,0 +1,189 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 26,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-04-11T01:35:42Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-04-11T01:35:42Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisGridShow": true,
+          "axisLabel": "% of Client IOPS",
+          "axisPlacement": "auto",
+          "fillOpacity": 80,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineWidth": 1,
+          "scaleDistribution": {
+            "type": "linear"
+          }
+        },
+        "decimals": 0,
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "percentunit"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Value #A"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "dark-blue",
+                "mode": "fixed"
+              }
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Value #B"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "light-blue",
+                "mode": "fixed"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 4,
+      "w": 4,
+      "x": 20,
+      "y": 6
+    },
+    "id": 138,
+    "libraryPanel": {
+      "name": "Read/Write Balance"
+    },
+    "options": {
+      "barRadius": 0,
+      "barWidth": 0.28,
+      "groupWidth": 0.7,
+      "legend": {
+        "calcs": [
+          "last"
+        ],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "orientation": "horizontal",
+      "showValue": "always",
+      "stacking": "normal",
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      },
+      "xTickLabelRotation": 0,
+      "xTickLabelSpacing": 0
+    },
+    "pluginVersion": "9.1.6",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "sum(rate(ceph_pool_rd[40s])) / ((sum(rate(ceph_pool_rd[40s]))) + sum(rate(ceph_pool_wr[40s])))",
+        "format": "table",
+        "instant": true,
+        "legendFormat": "Reads",
+        "range": false,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "sum(rate(ceph_pool_wr[40s])) / ((sum(rate(ceph_pool_rd[40s]))) + sum(rate(ceph_pool_wr[40s])))",
+        "format": "table",
+        "hide": false,
+        "instant": true,
+        "legendFormat": "Writes",
+        "range": false,
+        "refId": "B"
+      }
+    ],
+    "title": "Read/Write Balance",
+    "transformations": [
+      {
+        "id": "merge",
+        "options": {}
+      },
+      {
+        "id": "organize",
+        "options": {
+          "excludeByName": {},
+          "indexByName": {},
+          "renameByName": {
+            "Value #A": "Reads",
+            "Value #B": "Writes"
+          }
+        }
+      }
+    ],
+    "type": "barchart"
+  },
+  "name": "Read/Write Balance",
+  "orgId": 1,
+  "type": "barchart",
+  "uid": "5GeAswY4z",
+  "version": 1
+}

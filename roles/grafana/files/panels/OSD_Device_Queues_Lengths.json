@@ -1,0 +1,129 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 43,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-05-19T02:57:28Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-05-19T02:57:28Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "Queue Size",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "locale"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 52
+    },
+    "id": 244,
+    "libraryPanel": {
+      "name": "OSD Device Queues Lengths"
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "pluginVersion": "9.1.6",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "label_replace((rate(node_disk_io_time_weighted_seconds_total{device=~\"nvme.*\"}[30s])),\"exported_instance\",\"$1.rdu2.scalelab.redhat.com\",\"instance\",\"(.*):(.*)\") * on(exported_instance, device) group_left(ceph_daemon) label_replace(ceph_disk_occupation,\"device\",\"$1\",\"devices\",\"(.*)\")",
+        "hide": false,
+        "instant": false,
+        "interval": "",
+        "legendFormat": "[{{ceph_daemon}}] {{exported_instance}}:{{device}}",
+        "range": true,
+        "refId": "E"
+      }
+    ],
+    "title": "OSD Device Queues Lengths",
+    "transformations": [],
+    "type": "timeseries"
+  },
+  "name": "OSD Device Queues Lengths",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "lzROyuU4z",
+  "version": 1
+}

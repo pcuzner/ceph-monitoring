@@ -1,0 +1,20 @@
+---
+- name: Purge Prometheus instance
+  hosts:
+    - ceph
+  gather_facts: no
+  roles:
+    - defaults
+  vars_prompt:
+    - name: ok_to_delete
+      prompt: "You're about to purge the exporters from {{ groups['ceph']|length }} host. Are you sure [no]?"
+      private: no
+  tasks:
+    - block:
+        - name: purge node-exporter
+          ansible.builtin.include_tasks: roles/node-exporter/tasks/purge.yml
+        - name: purge process-exporter
+          ansible.builtin.include_tasks: roles/process-exporter/tasks/purge.yml
+      when:
+        - ok_to_delete|bool
+

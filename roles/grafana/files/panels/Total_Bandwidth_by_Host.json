@@ -1,0 +1,168 @@
+{
+  "description": "Network receive + transmit bytes for all active (UP) physical interfaces on each host in the cluster",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 13,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-04-04T05:01:54Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-04-05T03:43:58Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "Network receive + transmit bytes for all active (UP) physical interfaces on each host in the cluster",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 20,
+          "gradientMode": "hue",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "binBps"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 11,
+      "x": 11,
+      "y": 3
+    },
+    "id": 12,
+    "libraryPanel": {
+      "description": "Network receive + transmit bytes for all active (UP) physical interfaces on each host in the cluster",
+      "meta": {
+        "connectedDashboards": 1,
+        "created": "2023-04-04T05:01:54Z",
+        "createdBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        },
+        "folderName": "General",
+        "folderUid": "",
+        "updated": "2023-04-04T07:55:15Z",
+        "updatedBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        }
+      },
+      "name": "Total Bandwidth by Host",
+      "type": "timeseries",
+      "uid": "3cA1mHY4z",
+      "version": 3
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "(sum by(host) (label_replace(rate(node_network_receive_bytes_total{device=~\"(eth|en).*\"}[1m]),\"host\",\"$1\",\"instance\",\"(.*):9100\") * on(instance, device,host) label_replace(node_network_info{operstate=\"up\",job=\"node-exporter\"},\"host\",\"$1\",\"instance\",\"(.*):9100\")))",
+        "legendFormat": "{{host}}",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum by(instance) (rate(node_network_transmit_bytes_total{device=~\"(eth|en).*\"}[1m]) * on(instance, device) node_network_info{operstate=\"up\"})",
+        "hide": true,
+        "legendFormat": "{{instance}}/TX",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "(sum by(instance) (rate(node_network_receive_bytes_total{device=~\"(eth|en).*\"}[1m]) * on(instance, device) node_network_info{operstate=\"up\",job=\"node-exporter\"})) +\n(sum by(instance) (rate(node_network_transmit_bytes_total{device=~\"(eth|en).*\"}[1m]) * on(instance, device) node_network_info{operstate=\"up\", job=\"node-exporter\"}))",
+        "hide": true,
+        "legendFormat": "{{instance}}",
+        "range": true,
+        "refId": "C"
+      }
+    ],
+    "title": "Total Bandwidth by Host",
+    "type": "timeseries"
+  },
+  "name": "Total Bandwidth by Host",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "3cA1mHY4z",
+  "version": 4
+}

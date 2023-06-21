@@ -1,0 +1,15 @@
+[Unit]
+Description=Process exporter daemon
+After=network-online.target local-fs.target time-sync.target
+Wants=network-online.target local-fs.target time-sync.target
+
+[Service]
+Type=forking
+ExecStartPre=-/bin/podman rm process-exporter
+ExecStart=/bin/podman run -d --network host --user 65534 --name process-exporter -v /proc:/host/proc:ro {{ process_exporter_image }}:{{ process_exporter_tag }} -filter={{ process_exporter_daemons }} -port={{ process_exporter_port }} -prefix={{ process_exporter_prefix }} -with-threads={{ process_exporter_threads }} 
+ExecStop=/bin/podman kill process-exporter
+ExecStopPost=-/bin/podman rm process-exporter
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,126 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 49,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-05-23T04:54:27Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-05-23T04:54:27Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "bytes"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 8,
+      "x": 0,
+      "y": 22
+    },
+    "id": 255,
+    "libraryPanel": {
+      "name": "Network TX by Worker"
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum by(instance) (rate(node_network_transmit_bytes_total{job=\"fio\"}[30s]))",
+        "legendFormat": "__auto",
+        "range": true,
+        "refId": "A"
+      }
+    ],
+    "title": "Network TX by Worker",
+    "type": "timeseries"
+  },
+  "name": "Network TX by Worker",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "l-i-SVQ4k",
+  "version": 1
+}

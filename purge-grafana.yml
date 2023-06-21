@@ -1,0 +1,18 @@
+---
+- name: Purge Grafana instance
+  hosts:
+    - grafana
+  gather_facts: no
+  roles:
+    - defaults
+  vars_prompt:
+    - name: ok_to_delete
+      prompt: "You're about to purge the grafana instance on {{ groups['grafana'][0] }}. Are you sure [no]?"
+      private: no
+  tasks:
+    - block:
+        - name: purge grafana
+          ansible.builtin.include_tasks: roles/grafana/tasks/purge.yml
+      when:
+        - ok_to_delete|bool
+

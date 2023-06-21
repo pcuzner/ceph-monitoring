@@ -1,0 +1,24 @@
+---
+- name: stop node-exporter
+  ansible.builtin.systemd:
+    name: node-exporter
+    state: stopped
+
+- name: fetch service facts
+  ansible.builtin.service_facts:
+
+- name: Ensure the port is dropped
+  ansible.posix.firewalld:
+    port: "{{ node_exporter_port }}/tcp"
+    permanent: true
+    state: disabled
+  when: ansible_facts.services['firewalld.service']['state'] == "running"
+
+- name: remove the systemd unit
+  ansible.builtin.file:
+    path: /etc/systemd/system/node-exporter.service
+    state: absent
+
+- name: reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true

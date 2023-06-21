@@ -1,0 +1,37 @@
+---
+- name: extract the model from the panel file
+  shell: "cat {{ item }}"
+  register: raw_file
+
+#- name: extract panel title
+#  shell: "cat /tmp/panel_model.json | jq .title"
+#  register: title
+
+- name: parse model into json format
+  set_fact: 
+    jsondata: "{{ raw_file.stdout | from_json }}"
+
+- name: Extract model
+  set_fact:
+    model: "{{ jsondata | community.general.json_query('model') }}"
+
+- name: set title
+  set_fact:
+    title: "{{ jsondata | community.general.json_query('model.title') }}"
+
+- name: "Define the library panel {{ title }} to Grafana"
+  ansible.builtin.uri:
+    url: "http://{{ groups['grafana'][0] }}:{{ grafana_port }}/api/library-elements"
+    user: "{{ grafana_user }}"
+    password: "{{ grafana_password }}"
+    method: POST
+    validate_certs: no
+    force_basic_auth: yes
+    body_format: json
+    body: >
+      {
+        "model": {{ model }}, 
+        "name": "{{ title }}",
+        "kind": 1
+      }
+

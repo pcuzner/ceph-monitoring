@@ -1,0 +1,19 @@
+---
+- name: Deploy Prometheus Exporters
+  hosts: 
+    - ceph
+  gather_facts: no
+  roles:
+    - defaults
+    - common
+    - node-exporter
+    - process-exporter
+  tasks:
+    - block:
+      - name: update prometheus config
+        include_tasks: roles/prometheus/tasks/build_prometheus_yml.yml
+
+      - name: reload prometheus
+        include_tasks: roles/prometheus/tasks/reload_prometheus.yml
+
+      delegate_to: "{{ groups['prometheus'][0] }}"

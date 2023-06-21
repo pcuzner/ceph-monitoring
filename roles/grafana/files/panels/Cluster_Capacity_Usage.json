@@ -1,0 +1,153 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 3,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2022-10-21T01:47:49Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2022-10-21T01:47:49Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "bytes"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 7
+    },
+    "id": 11,
+    "libraryPanel": {
+      "name": "Cluster Capacity Usage"
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "none"
+      }
+    },
+    "repeat": "ceph_cluster",
+    "repeatDirection": "h",
+    "scopedVars": {
+      "ceph_cluster": {
+        "selected": false,
+        "text": "ceph1",
+        "value": "ceph1"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": true,
+        "expr": "ceph_cluster_total_used_bytes{job=~\"$ceph_cluster\"}",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "{{job}}",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": true,
+        "expr": "ceph_cluster_total_bytes{job=~\"$ceph_cluster\"}",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "{{job}} Raw",
+        "range": true,
+        "refId": "A"
+      }
+    ],
+    "title": "Cluster Capacity Usage",
+    "type": "timeseries"
+  },
+  "name": "Cluster Capacity Usage",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "K1AXX3S4z",
+  "version": 1
+}

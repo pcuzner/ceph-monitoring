@@ -1,0 +1,17 @@
+---
+- name: "Load dashboard from {{ item }}"
+  ansible.builtin.uri:
+    url: "http://{{ groups['grafana'][0] }}:{{ grafana_port }}/api/dashboards/db"
+    user: "{{ grafana_user }}"
+    password: "{{ grafana_password }}"
+    method: POST
+    validate_certs: no
+    force_basic_auth: yes
+    body_format: json
+    body: >
+      {
+        "dashboard": {{ lookup('file', item) }},
+        "folderId": 0,
+        "overwrite": true
+      }
+

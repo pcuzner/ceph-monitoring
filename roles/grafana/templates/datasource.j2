@@ -1,0 +1,11 @@
+---
+apiVersion: 1
+deleteDatasources:
+  - name: Prometheus
+datasources:
+  - name: Prometheus
+    type: prometheus
+    url: http://{{ groups['prometheus'][0] }}:{{ prometheus_port }}
+    isDefault: true
+    editable: true
+    version: 1

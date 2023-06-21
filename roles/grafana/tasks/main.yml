@@ -1,0 +1,82 @@
+---
+- name: ensure required packages are present
+  ansible.builtin.dnf: 
+    name: jq
+    state: present
+
+- name: fetch service facts
+  ansible.builtin.service_facts:
+
+- name: create grafana directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ grafana_uid }}"
+    group: root
+  with_items:
+    - "{{ grafana_config_dir }}/provisioning/datasources"
+    - "{{ grafana_data_dir }}"
+
+- name: Deploy the grafana.ini file
+  ansible.builtin.template:
+    src: grafana.ini.j2
+    dest: "{{ grafana_config_dir }}/grafana.ini"
+  
+- name: Deploy the prometheus datasource
+  ansible.builtin.template:
+    src: datasource.j2
+    dest: "{{ grafana_config_dir }}/provisioning/datasources/prometheus.yml"
+  
+- name: Ensure the port is accessible
+  ansible.posix.firewalld:
+    port: "{{ grafana_port }}/tcp"
+    permanent: true
+    state: enabled
+  when: ansible_facts.services['firewalld.service']['state'] == "running"   
+
+- name: pull the grafana image
+  shell: "podman pull {{ grafana_image }}:{{ grafana_tag }}"
+
+- name: deploy the grafana systemd file
+  ansible.builtin.template:
+    src: grafana.service.j2
+    dest: /etc/systemd/system/grafana.service
+ 
+- name: reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: enable and start grafana
+  ansible.builtin.systemd:
+    name: grafana
+    enabled: true
+    state: started
+
+- name: Wait for up to 5m for Grafana to be accessible
+  ansible.builtin.uri:
+    url: "http://{{ groups['grafana'][0] }}:{{ grafana_port }}/api/health"
+    user: "{{ grafana_user }}"
+    password: "{{ grafana_password }}"
+    method: GET
+    validate_certs: no
+    force_basic_auth: yes
+  register: grafana_health
+  retries: 60
+  delay: 5
+  until: grafana_health.status == 200
+
+- name: Get the preconfigured dashboards to load
+  set_fact:
+    dashboards: "{{ lookup('ansible.builtin.fileglob', 'dashboards/*.json', wantlist=True) }}"
+
+- name: Define the dashboards 
+  ansible.builtin.include_tasks: load_dashboard.yml
+  loop: "{{ dashboards }}"
+  
+- name: Get the library panels names
+  set_fact:
+    library_panels: "{{ lookup('ansible.builtin.fileglob', 'panels/*.json', wantlist=True) }}"
+
+- name: Define the library panels to Grafana
+  ansible.builtin.include_tasks: load_panel.yml
+  loop: "{{ library_panels }}"

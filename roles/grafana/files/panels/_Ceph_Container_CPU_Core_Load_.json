@@ -1,0 +1,142 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 36,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-04-17T02:12:04Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-04-17T02:12:04Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "decimals": 2,
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "percentunit"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 9,
+      "x": 3,
+      "y": 35
+    },
+    "id": 26,
+    "libraryPanel": {
+      "name": " Ceph Container CPU Core Load "
+    },
+    "options": {
+      "legend": {
+        "calcs": [
+          "min",
+          "last",
+          "max"
+        ],
+        "displayMode": "table",
+        "placement": "bottom",
+        "showLegend": true,
+        "sortBy": "Max",
+        "sortDesc": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "pluginVersion": "8.4.4",
+    "repeat": "ceph_cluster",
+    "repeatDirection": "h",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": true,
+        "expr": "(label_replace(sum by(id) (rate(container_cpu_usage_seconds_total{id=~\".*(ceph-.*)(osd|mon|mgr|rbd-mirror|rgw|mds).*.service\"}[30s])),\"shortname\",\"$2\", \"id\", \"(.*)@(.*)\"))",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "{{shortname}}",
+        "range": true,
+        "refId": "A"
+      }
+    ],
+    "title": " Ceph Container CPU Core Load ",
+    "transformations": [],
+    "type": "timeseries"
+  },
+  "name": " Ceph Container CPU Core Load ",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "_1ueSvP4k",
+  "version": 1
+}

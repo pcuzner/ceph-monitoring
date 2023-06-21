@@ -1,0 +1,129 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 52,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 2,
+    "created": "2023-05-29T01:28:58Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-05-29T01:28:58Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "decimals": 2,
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "s"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 10,
+      "x": 0,
+      "y": 36
+    },
+    "id": 261,
+    "libraryPanel": {
+      "name": "AVG Read Latency by Client"
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "avg by(instance) (rate(node_disk_read_time_seconds_total{device=~\"rbd.*p1\"}[30s]) / rate(node_disk_reads_completed_total[30s]))",
+        "hide": false,
+        "legendFormat": "{{instance}}",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "title": "AVG Read Latency by Client",
+    "type": "timeseries"
+  },
+  "name": "AVG Read Latency by Client",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "neZSdLw4z",
+  "version": 1
+}

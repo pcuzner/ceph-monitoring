@@ -1,0 +1,13 @@
+[Unit]
+Description=Grafana Server
+After=network-online.target local-fs.target
+Wants=network-online.target local-fs.target
+
+[Service]
+Type=forking
+ExecStartPre=-/bin/podman rm grafana
+ExecStart=/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --net=host --name grafana --user {{ grafana_uid }}  -d -v {{ grafana_config_dir }}:/etc/grafana -v {{ grafana_data_dir }}:/var/lib/grafana {{ grafana_image }}:{{ grafana_tag }}
+
+[Install]
+WantedBy=multi-user.target
+

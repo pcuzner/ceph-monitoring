@@ -1,0 +1,164 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 27,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-04-11T01:35:58Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-04-24T04:41:09Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "decimals": 0,
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "bytes"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Value #A"
+          },
+          "properties": [
+            {
+              "id": "displayName",
+              "value": "Reads"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Value #B"
+          },
+          "properties": [
+            {
+              "id": "displayName",
+              "value": "Writes"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 5,
+      "w": 2,
+      "x": 22,
+      "y": 3
+    },
+    "id": 133,
+    "libraryPanel": {
+      "description": "",
+      "meta": {
+        "connectedDashboards": 1,
+        "created": "2023-04-11T01:35:58Z",
+        "createdBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        },
+        "folderName": "General",
+        "folderUid": "",
+        "updated": "2023-04-11T01:43:48Z",
+        "updatedBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        }
+      },
+      "name": "Physical IO/Size",
+      "type": "stat",
+      "uid": "WL21yQY4k",
+      "version": 2
+    },
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.1.6",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "rate(node_disk_read_bytes_total{device=~\"rbd.*p1\"}[40s]) / clamp_min(rate(node_disk_reads_completed_total[40s]),1)",
+        "format": "table",
+        "instant": true,
+        "legendFormat": "Read",
+        "range": false,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "rate(node_disk_written_bytes_total{device=~\"rbd.*p1\"}[40s]) / clamp_min(rate(node_disk_writes_completed_total[40s]),1)",
+        "format": "table",
+        "hide": false,
+        "instant": true,
+        "legendFormat": "Write",
+        "range": false,
+        "refId": "B"
+      }
+    ],
+    "title": "Client IO/Size",
+    "type": "stat"
+  },
+  "name": "Physical IO/Size",
+  "orgId": 1,
+  "type": "stat",
+  "uid": "WL21yQY4k",
+  "version": 3
+}

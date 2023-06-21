@@ -1,0 +1,148 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 15,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-04-10T21:47:52Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-04-10T21:59:38Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "normal"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 10,
+      "w": 9,
+      "x": 0,
+      "y": 11
+    },
+    "id": 101,
+    "interval": "5s",
+    "libraryPanel": {
+      "meta": {
+        "connectedDashboards": 0,
+        "created": "2023-04-10T21:47:52.219135693Z",
+        "createdBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        },
+        "folderName": "",
+        "folderUid": "",
+        "updated": "2023-04-10T21:47:52.219135893Z",
+        "updatedBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        }
+      },
+      "name": "Thread Analysis - timeseries chart",
+      "uid": "uRwoOwY4k",
+      "version": 1
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": true,
+        "expr": "sum by(ppid,tname) (rate(perfscale_thread_cpu_user_seconds_total{daemon=\"osd.24\"}[30s]) + rate(perfscale_thread_cpu_kernel_seconds_total[30s]))",
+        "interval": "",
+        "legendFormat": "{{tname}}",
+        "range": true,
+        "refId": "A"
+      }
+    ],
+    "title": "CPU Usage by thread for osd.24",
+    "type": "timeseries"
+  },
+  "name": "Thread Analysis - timeseries chart",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "uRwoOwY4k",
+  "version": 2
+}

@@ -1,0 +1,139 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 67,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-20T03:20:11Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-20T03:20:11Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "short"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Value #A"
+          },
+          "properties": [
+            {
+              "id": "displayName",
+              "value": "Cores"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Value #B"
+          },
+          "properties": [
+            {
+              "id": "displayName",
+              "value": "Threads"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 4,
+      "w": 3,
+      "x": 0,
+      "y": 18
+    },
+    "id": 70,
+    "libraryPanel": {
+      "name": "Host CPU Info"
+    },
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.1.6",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "max(count by(instance) (node_cpu_seconds_total{mode=\"idle\", job=\"node-exporter\"}) / 2)",
+        "format": "table",
+        "instant": true,
+        "legendFormat": "Cores",
+        "range": false,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "max(count by(instance) (node_cpu_seconds_total{mode=\"idle\", job=\"node-exporter\"}))",
+        "format": "table",
+        "hide": false,
+        "instant": true,
+        "legendFormat": "Threads",
+        "range": false,
+        "refId": "B"
+      }
+    ],
+    "title": "Host CPU Info",
+    "type": "stat"
+  },
+  "name": "Host CPU Info",
+  "orgId": 1,
+  "type": "stat",
+  "uid": "CV-On2XVz",
+  "version": 1
+}

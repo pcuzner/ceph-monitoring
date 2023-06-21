@@ -1,0 +1,126 @@
+{
+  "description": "This is a point in time view covering the last sample",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 16,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-04-10T21:48:11Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-04-26T00:02:06Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "This is a point in time view covering the last sample",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          }
+        },
+        "mappings": [],
+        "unit": "percent"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 9,
+      "w": 6,
+      "x": 12,
+      "y": 3
+    },
+    "id": 125,
+    "libraryPanel": {
+      "description": "This is a point in time view covering the last sample",
+      "meta": {
+        "connectedDashboards": 1,
+        "created": "2023-04-10T21:48:11Z",
+        "createdBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        },
+        "folderName": "General",
+        "folderUid": "",
+        "updated": "2023-04-25T21:52:14Z",
+        "updatedBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        }
+      },
+      "name": "Thread Analysis - Pie chart",
+      "type": "piechart",
+      "uid": "d_K0dwY4k",
+      "version": 5
+    },
+    "options": {
+      "displayLabels": [
+        "value"
+      ],
+      "legend": {
+        "displayMode": "table",
+        "placement": "right",
+        "showLegend": true,
+        "values": [
+          "value"
+        ]
+      },
+      "pieType": "pie",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "tooltip": {
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "sum by(ppid,tname) (rate(perfscale_thread_cpu_user_seconds_total{daemon=\"osd.24\"}[30s]) + rate(perfscale_thread_cpu_kernel_seconds_total[30s]))",
+        "instant": true,
+        "interval": "",
+        "legendFormat": "{{tname}}",
+        "refId": "A"
+      }
+    ],
+    "title": "CPU Usage by Thread for osd.24",
+    "type": "piechart"
+  },
+  "name": "Thread Analysis - Pie chart",
+  "orgId": 1,
+  "type": "piechart",
+  "uid": "d_K0dwY4k",
+  "version": 6
+}

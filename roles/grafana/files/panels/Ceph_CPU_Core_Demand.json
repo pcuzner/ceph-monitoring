@@ -1,0 +1,183 @@
+{
+  "description": "Shows CPU demand for mon,mgr, osd and rbd-mirror daemons for both clusters. ",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 1,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2022-10-20T23:53:16Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2022-10-20T23:53:16Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "Shows CPU demand for mon,mgr, osd and rbd-mirror daemons for both clusters. ",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "decimals": 1,
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "percentunit"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Cluster1"
+          },
+          "properties": [
+            {
+              "id": "custom.fillOpacity",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Cluster2"
+          },
+          "properties": [
+            {
+              "id": "custom.fillOpacity",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "backfill"
+          },
+          "properties": [
+            {
+              "id": "custom.axisPlacement",
+              "value": "right"
+            },
+            {
+              "id": "unit",
+              "value": "locale"
+            },
+            {
+              "id": "custom.fillOpacity",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 7,
+      "x": 0,
+      "y": 15
+    },
+    "id": 2,
+    "libraryPanel": {
+      "name": "Ceph CPU Core Demand"
+    },
+    "options": {
+      "legend": {
+        "calcs": [
+          "min",
+          "last",
+          "max"
+        ],
+        "displayMode": "table",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "8.4.4",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": true,
+        "expr": "sum by(job) (label_replace(sum by(job,id) (rate(container_cpu_usage_seconds_total{job=~\"ceph.*\", id=~\".*(ceph-.*)(osd|mon|mgr|rbd-mirror).*.service\"}[30s])),\"shortname\",\"$2\", \"id\", \"(.*)@(.*)\"))",
+        "hide": false,
+        "instant": false,
+        "interval": "",
+        "legendFormat": "{{job}}",
+        "refId": "A"
+      }
+    ],
+    "title": "CPU Core Demand",
+    "transformations": [],
+    "type": "timeseries"
+  },
+  "name": "Ceph CPU Core Demand",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "DUUvL3S4z",
+  "version": 1
+}

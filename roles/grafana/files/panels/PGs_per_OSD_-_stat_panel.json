@@ -1,0 +1,123 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 17,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-04-10T21:48:47Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-04-10T21:48:47Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "locale"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 9,
+      "w": 2,
+      "x": 0,
+      "y": 2
+    },
+    "id": 73,
+    "libraryPanel": {
+      "name": "PGs per OSD - stat panel"
+    },
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.1.6",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "min(ceph_osd_numpg)",
+        "legendFormat": "min",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "max(ceph_osd_numpg)",
+        "hide": false,
+        "legendFormat": "max",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "stddev(ceph_osd_numpg)",
+        "hide": false,
+        "legendFormat": "stddev",
+        "range": true,
+        "refId": "C"
+      }
+    ],
+    "title": "PG / OSD",
+    "type": "stat"
+  },
+  "name": "PGs per OSD - stat panel",
+  "orgId": 1,
+  "type": "stat",
+  "uid": "w-21OQYVz",
+  "version": 1
+}

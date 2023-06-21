@@ -1,0 +1,10 @@
+---
+- name: Deploy Prometheus
+  hosts: 
+    - prometheus
+  gather_facts: no
+  roles:
+    - defaults
+    - common
+    - prometheus
+

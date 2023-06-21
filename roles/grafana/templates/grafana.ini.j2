@@ -1,0 +1,18 @@
+[paths]
+data = {{ grafana_data_dir }}
+plugins = {{ grafana_data_dir }}/plugins
+
+[server]
+protocol = http
+http_port = {{ grafana_port }}
+
+[users]
+default_theme = light
+
+[auth.anonymous]
+enabled = true
+
+[security]
+admin_user = {{ grafana_user }}
+admin_password = {{ grafana_password }}
+

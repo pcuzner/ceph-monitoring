@@ -1,0 +1,170 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 28,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-04-13T22:34:02Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-04-14T00:37:05Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        }
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Total Write IOPS"
+          },
+          "properties": [
+            {
+              "id": "custom.axisPlacement",
+              "value": "right"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 18
+    },
+    "id": 93,
+    "libraryPanel": {
+      "meta": {
+        "connectedDashboards": 0,
+        "created": "2023-04-13T22:34:02.92206889Z",
+        "createdBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        },
+        "folderName": "",
+        "folderUid": "",
+        "updated": "2023-04-13T22:34:02.922069007Z",
+        "updatedBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        }
+      },
+      "name": "Physical Write IOPS",
+      "uid": "dQTOMkE4k",
+      "version": 1
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "label_replace(rate(node_disk_writes_completed_total{device=~\"nvme.*\",job=\"node-exporter\"}[30s]),\"exported_instance\",\"$1.rdu2.scalelab.redhat.com\",\"instance\",\"(.*):(.*)\") * on(exported_instance, device) group_left(ceph_daemon) label_replace(ceph_disk_occupation,\"device\",\"$1\",\"devices\",\"(.*)\")",
+        "legendFormat": "{{ceph_daemon}}",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum(label_replace(rate(node_disk_writes_completed_total{device=~\"nvme.*\",job=\"node-exporter\"}[30s]),\"exported_instance\",\"$1.rdu2.scalelab.redhat.com\",\"instance\",\"(.*):(.*)\") * on(exported_instance, device) group_left(ceph_daemon) label_replace(ceph_disk_occupation,\"device\",\"$1\",\"devices\",\"(.*)\"))",
+        "hide": false,
+        "legendFormat": "Total Write IOPS",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "title": "Physical Write IOPS",
+    "type": "timeseries"
+  },
+  "name": "Physical Write IOPS",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "dQTOMkE4k",
+  "version": 2
+}

@@ -1,0 +1,45 @@
+---
+- name: Purge all monitoring components
+  hosts:
+    - localhost
+  gather_facts: no
+  roles:
+    - defaults
+  vars_prompt:
+    - name: ok_to_delete
+      prompt: You're about to purge ALL the monitoring components and data from your environment. Are you sure [no]?
+      private: no
+  tasks:
+    - name: Abort if the user changed their mind
+      fail:
+        msg: Purge process aborted
+      when: ok_to_delete != "yes"
+
+- name: Purging exporters
+  hosts: ceph
+  gather_facts: no
+  roles: 
+    - defaults
+  tasks:
+    - name: purge node-exporter daemons
+      ansible.builtin.include_tasks: roles/node-exporter/tasks/purge.yml
+    - name: purge process-exporter daemons
+      ansible.builtin.include_tasks: roles/process-exporter/tasks/purge.yml
+
+- name: Purging Grafana
+  hosts: grafana
+  gather_facts: no
+  roles:
+    - defaults
+  tasks:
+    - name: purge Grafana
+      ansible.builtin.include_tasks: roles/grafana/tasks/purge.yml
+
+- name: Purging Prometheus
+  hosts: prometheus
+  gather_facts: no
+  roles:
+    - defaults
+  tasks:
+    - name: purge prometheus
+      ansible.builtin.include_tasks: roles/prometheus/tasks/purge.yml

@@ -1,0 +1,147 @@
+{
+  "description": "rbd pool throughput averages for the last hour",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 24,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-04-10T22:23:34Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-04-25T23:17:44Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "rbd pool throughput averages for the last hour",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "decimals": 1,
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "binBps"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 9,
+      "w": 2,
+      "x": 4,
+      "y": 3
+    },
+    "id": 117,
+    "libraryPanel": {
+      "description": "rbd pool throughput",
+      "meta": {
+        "connectedDashboards": 1,
+        "created": "2023-04-10T22:23:34Z",
+        "createdBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        },
+        "folderName": "General",
+        "folderUid": "",
+        "updated": "2023-04-11T03:11:09Z",
+        "updatedBy": {
+          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+          "id": 2,
+          "name": "pcuzner"
+        }
+      },
+      "name": "Throughput Summary",
+      "type": "stat",
+      "uid": "Dc71cwL4z",
+      "version": 3
+    },
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.1.6",
+    "repeatDirection": "h",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "avg_over_time(((rate(ceph_pool_rd_bytes[40s]) + rate(ceph_pool_wr_bytes[40s])) * on(job,pool_id) group_right ceph_pool_metadata{name=\"rbd\"})[1h:10s])",
+        "legendFormat": "Total",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "avg_over_time(((rate(ceph_pool_rd_bytes[40s])) * on(job,pool_id) group_right ceph_pool_metadata{name=\"rbd\"})[1h:10s])",
+        "hide": false,
+        "legendFormat": "Reads",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "avg_over_time(((rate(ceph_pool_wr_bytes[40s])) * on(job,pool_id) group_right ceph_pool_metadata{name=\"rbd\"})[1h:10s])",
+        "hide": false,
+        "legendFormat": "Writes",
+        "range": true,
+        "refId": "C"
+      }
+    ],
+    "title": "Throughput",
+    "type": "stat"
+  },
+  "name": "Throughput Summary",
+  "orgId": 1,
+  "type": "stat",
+  "uid": "Dc71cwL4z",
+  "version": 4
+}

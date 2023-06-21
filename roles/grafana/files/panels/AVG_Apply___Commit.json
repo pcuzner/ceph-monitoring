@@ -1,0 +1,164 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 41,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-05-18T04:55:38Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-05-18T04:55:38Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "mappings": [],
+        "min": 2,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "ms"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 7,
+      "x": 16,
+      "y": 9
+    },
+    "id": 64,
+    "libraryPanel": {
+      "name": "AVG Apply / Commit"
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "pluginVersion": "9.1.6",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "avg(ceph_osd_apply_latency_ms)",
+        "legendFormat": "AVG Apply",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "avg(ceph_osd_commit_latency_ms)",
+        "hide": false,
+        "legendFormat": "AVG Commit",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "max(ceph_osd_apply_latency_ms)",
+        "hide": false,
+        "legendFormat": "Max Apply",
+        "range": true,
+        "refId": "C"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "max(ceph_osd_commit_latency_ms)",
+        "hide": false,
+        "legendFormat": "Max Commit",
+        "range": true,
+        "refId": "D"
+      }
+    ],
+    "title": "AVG Apply / Commit",
+    "type": "timeseries"
+  },
+  "name": "AVG Apply / Commit",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "M9BYFQ84z",
+  "version": 1
+}

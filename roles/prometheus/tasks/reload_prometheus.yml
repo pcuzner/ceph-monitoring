@@ -1,0 +1,6 @@
+---
+- name: Tell prometheus server to reload it's config
+  ansible.builtin.uri:
+    url: "http://{{ groups['prometheus'][0] }}:{{ prometheus_port }}/-/reload"
+    method: POST
+

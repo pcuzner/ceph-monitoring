@@ -1,0 +1,146 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 64,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-20T03:19:19Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-20T03:19:19Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "fillOpacity": 80,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineWidth": 1,
+          "scaleDistribution": {
+            "type": "linear"
+          }
+        },
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "yellow",
+              "value": 85
+            },
+            {
+              "color": "dark-red",
+              "value": 95
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 9,
+      "w": 10,
+      "x": 12,
+      "y": 8
+    },
+    "id": 183,
+    "libraryPanel": {
+      "name": "OSD Capacity Distribution %"
+    },
+    "options": {
+      "barRadius": 0,
+      "barWidth": 0.97,
+      "colorByField": "Value",
+      "groupWidth": 0.7,
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": false
+      },
+      "orientation": "auto",
+      "showValue": "auto",
+      "stacking": "none",
+      "tooltip": {
+        "mode": "multi",
+        "sort": "none"
+      },
+      "xField": "ceph_daemon",
+      "xTickLabelRotation": -90,
+      "xTickLabelSpacing": 0
+    },
+    "pluginVersion": "9.1.6",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "(ceph_osd_stat_bytes_used / ceph_osd_stat_bytes) * 100",
+        "format": "table",
+        "instant": true,
+        "legendFormat": "{{ceph_daemon}}",
+        "range": false,
+        "refId": "A"
+      }
+    ],
+    "title": "OSD Capacity Usage %",
+    "transformations": [
+      {
+        "id": "organize",
+        "options": {
+          "excludeByName": {
+            "__name__": true
+          },
+          "indexByName": {},
+          "renameByName": {
+            "Value": "Used Capacity"
+          }
+        }
+      }
+    ],
+    "type": "barchart"
+  },
+  "name": "OSD Capacity Distribution %",
+  "orgId": 1,
+  "type": "barchart",
+  "uid": "Ql6H72u4z",
+  "version": 1
+}

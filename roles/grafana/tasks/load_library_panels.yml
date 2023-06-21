@@ -1,0 +1,21 @@
+---
+- name: Wait for up to 5m for Grafana to be accessible
+  ansible.builtin.uri:
+    url: "http://{{ groups['grafana'][0] }}:{{ grafana_port }}/api/health"
+    user: "{{ grafana_user }}"
+    password: "{{ grafana_password }}"
+    method: GET
+    validate_certs: no
+    force_basic_auth: yes
+  register: grafana_health
+  retries: 60
+  delay: 5
+  until: grafana_health.status == 200
+
+- name: Get the library panels names
+  set_fact:
+    library_panels: "{{ lookup('ansible.builtin.fileglob', '*.json', wantlist=True) }}"
+
+- name: Define the library panels to Grafana
+  ansible.builtin.include_task: load_panel.yml
+  loop: "{{ library_panels }}"

@@ -1,0 +1,8 @@
+[prometheus]
+your-prometheus-server.com
+
+[grafana]
+your-grafana-server.com
+
+[ceph]
+ceph-node-1 mgr=true

@@ -1,0 +1,119 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 25,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-04-10T22:26:58Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-04-10T22:26:58Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "custom": {
+          "fillOpacity": 70,
+          "lineWidth": 0,
+          "spanNulls": false
+        },
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "dark-green",
+              "value": null
+            },
+            {
+              "color": "dark-yellow",
+              "value": 1
+            },
+            {
+              "color": "dark-red",
+              "value": 2
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 6,
+      "w": 8,
+      "x": 0,
+      "y": 17
+    },
+    "id": 43,
+    "libraryPanel": {
+      "name": "Ceph Health Overview"
+    },
+    "options": {
+      "alignValue": "left",
+      "legend": {
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": false
+      },
+      "mergeValues": true,
+      "rowHeight": 0.9,
+      "showValue": "auto",
+      "tooltip": {
+        "mode": "single",
+        "sort": "none"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "ceph_health_detail == 1",
+        "legendFormat": "{{name}}",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "ceph_health_status == 0",
+        "hide": false,
+        "legendFormat": "OK",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "title": "Ceph Health Overview",
+    "type": "state-timeline"
+  },
+  "name": "Ceph Health Overview",
+  "orgId": 1,
+  "type": "state-timeline",
+  "uid": "HicycQLVz",
+  "version": 1
+}

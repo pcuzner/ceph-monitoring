@@ -1,0 +1,176 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 71,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-20T07:39:35Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-20T07:39:35Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "decimals": 0,
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "locale"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 7,
+      "x": 0,
+      "y": 5
+    },
+    "id": 144,
+    "libraryPanel": {
+      "name": "GETs and PUTs Ops"
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "rate(ceph_rgw_get[40s]) * on (instance_id) group_left(ceph_daemon) ceph_rgw_metadata",
+        "legendFormat": "{{ceph_daemon}}-GET",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "rate(ceph_rgw_put[40s]) * on (instance_id) group_left(ceph_daemon) ceph_rgw_metadata",
+        "hide": false,
+        "legendFormat": "{{ceph_daemon}}-PUT",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum(rate(ceph_rgw_get[40s]) * on (instance_id) group_left(ceph_daemon) ceph_rgw_metadata)",
+        "hide": false,
+        "legendFormat": "ALL-GET",
+        "range": true,
+        "refId": "C"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum(rate(ceph_rgw_put[40s]) * on (instance_id) group_left(ceph_daemon) ceph_rgw_metadata)",
+        "hide": false,
+        "legendFormat": "ALL-PUT",
+        "range": true,
+        "refId": "D"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum(rate(ceph_rgw_get[40s]) * on (instance_id) group_left(ceph_daemon) ceph_rgw_metadata) + sum(rate(ceph_rgw_put[40s]) * on (instance_id) group_left(ceph_daemon) ceph_rgw_metadata)",
+        "hide": false,
+        "legendFormat": "Total S3 Ops",
+        "range": true,
+        "refId": "E"
+      }
+    ],
+    "title": "GETs and PUTs Ops",
+    "type": "timeseries"
+  },
+  "name": "GETs and PUTs Ops",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "ahb7fhu4k",
+  "version": 1
+}

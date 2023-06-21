@@ -1,0 +1,35 @@
+---
+- name: deploy monitoring environment
+  hosts: ceph
+  gather_facts: no
+  roles:
+    - defaults
+  tasks:
+    - name: node-exporter
+      ansible.builtin.include_role: 
+        name: node-exporter
+    - name: process-exporter
+      ansible.builtin.include_role: 
+        name: process-exporter
+ 
+- name: deploy prometheus
+  hosts: prometheus
+  gather_facts: no
+  roles:
+    - defaults
+  tasks:
+    - name: prometheus
+      ansible.builtin.include_role: 
+        name: prometheus
+
+- name: deploy monitoring environment
+  hosts: grafana
+  gather_facts: no
+  roles:
+    - defaults
+  tasks:
+    - name: grafana
+      ansible.builtin.include_role: 
+        name: grafana
+
+  

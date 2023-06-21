@@ -1,0 +1,44 @@
+---
+
+- name: fetch service facts
+  ansible.builtin.service_facts:
+
+- name: create required directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: nobody
+    group: nobody
+  with_items:
+    - "{{ prometheus_config_dir }}"
+    - "{{ prometheus_data_dir }}"
+    
+- name: create config file
+  ansible.builtin.include_tasks: build_prometheus_yml.yml
+
+- name: Ensure the port is accessible
+  ansible.posix.firewalld:
+    port: "{{ prometheus_port }}/tcp"
+    permanent: true
+    state: enabled
+  when: ansible_facts.services['firewalld.service']['state'] == "running"   
+
+- name: pull the prometheus image
+  shell: "podman pull {{ prometheus_image }}:{{ prometheus_tag }}"
+
+- name: deploy the prometheus systemd file
+  ansible.builtin.template:
+    src: prometheus.service.j2
+    dest: /etc/systemd/system/prometheus.service
+ 
+- name: reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: enable and start prometheus
+  ansible.builtin.systemd:
+    name: prometheus
+    enabled: true
+    state: started
+  
+

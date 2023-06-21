@@ -1,0 +1,15 @@
+[Unit]
+Description=Node exporter daemon
+After=network-online.target local-fs.target time-sync.target
+Wants=network-online.target local-fs.target time-sync.target
+
+[Service]
+Type=forking
+ExecStartPre=-/bin/podman rm node-exporter
+ExecStart=/bin/podman run -d --network host --user 65534 --name node-exporter -v /proc:/host/proc:ro -v /sys:/host/sys:ro -v /:/rootfs:ro {{ node_exporter_image }}:{{ node_exporter_tag }} --no-collector.timex --web.listen-address=:{{ node_exporter_port }}
+ExecStop=/bin/podman kill node-exporter
+ExecStopPost=-/bin/podman rm node-exporter
+
+[Install]
+WantedBy=multi-user.target
+

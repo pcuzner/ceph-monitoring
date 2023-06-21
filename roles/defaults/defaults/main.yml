@@ -1,0 +1,31 @@
+---
+# Prometheus
+
+prometheus_data_dir: /var/lib/prometheus
+prometheus_config_dir: /etc/prometheus
+prometheus_retention: 1y
+prometheus_port: 9095
+prometheus_tag: latest
+prometheus_image: quay.io/prometheus/prometheus
+
+# node-exporter
+node_exporter_image: quay.io/prometheus/node-exporter
+node_exporter_tag: v1.6.0
+node_exporter_port: 9100
+
+# process-exporter
+process_exporter_image: docker.io/pcuzner/process-exporter
+process_exporter_tag: latest
+process_exporter_port: 9200
+process_exporter_daemons: "ceph-osd,ceph-mon,ceph-mgr,ceph-mds,radosgw"
+process_exporter_threads: false
+process_exporter_prefix: ceph
+
+# grafana
+grafana_image: docker.io/grafana/grafana
+grafana_tag: 10.0.0
+grafana_port: 3000
+grafana_user: admin
+grafana_password: admin
+grafana_config_dir: /etc/grafana
+grafana_data_dir: /var/lib/grafana

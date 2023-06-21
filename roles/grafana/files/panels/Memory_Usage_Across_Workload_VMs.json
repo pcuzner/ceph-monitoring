@@ -1,0 +1,193 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 47,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 1,
+    "created": "2023-05-23T04:54:15Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-05-23T04:54:15Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "fillOpacity": 80,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineWidth": 1,
+          "scaleDistribution": {
+            "type": "linear"
+          }
+        },
+        "decimals": 1,
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "bytes"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Free"
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "green",
+                "mode": "fixed"
+              }
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Used "
+          },
+          "properties": [
+            {
+              "id": "color",
+              "value": {
+                "fixedColor": "yellow",
+                "mode": "fixed"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 9,
+      "x": 15,
+      "y": 22
+    },
+    "id": 237,
+    "libraryPanel": {
+      "name": "Memory Usage Across Workload VMs"
+    },
+    "options": {
+      "barRadius": 0,
+      "barWidth": 0.89,
+      "groupWidth": 0.7,
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "right",
+        "showLegend": true
+      },
+      "orientation": "auto",
+      "showValue": "auto",
+      "stacking": "normal",
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      },
+      "xTickLabelRotation": 0,
+      "xTickLabelSpacing": 0
+    },
+    "pluginVersion": "9.1.6",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "node_memory_MemTotal_bytes{job=\"fio\"} - node_memory_MemFree_bytes",
+        "format": "table",
+        "instant": true,
+        "legendFormat": "__auto",
+        "range": false,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "node_memory_MemFree_bytes{job=\"fio\"}",
+        "format": "table",
+        "hide": false,
+        "instant": true,
+        "legendFormat": "__auto",
+        "range": false,
+        "refId": "B"
+      }
+    ],
+    "title": "Memory Usage Across Workload VMs",
+    "transformations": [
+      {
+        "id": "seriesToColumns",
+        "options": {
+          "byField": "instance"
+        }
+      },
+      {
+        "id": "organize",
+        "options": {
+          "excludeByName": {
+            "Time 1": true,
+            "Time 2": true,
+            "__name__": true,
+            "job 1": true,
+            "job 2": true
+          },
+          "indexByName": {},
+          "renameByName": {
+            "Value #A": "Used ",
+            "Value #B": "Free"
+          }
+        }
+      }
+    ],
+    "type": "barchart"
+  },
+  "name": "Memory Usage Across Workload VMs",
+  "orgId": 1,
+  "type": "barchart",
+  "uid": "ZKExI4QVz",
+  "version": 1
+}

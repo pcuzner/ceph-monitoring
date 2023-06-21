@@ -1,0 +1,34 @@
+---
+- name: stop prometheus
+  ansible.builtin.systemd:
+    name: prometheus
+    state: stopped
+
+- name: fetch service facts
+  ansible.builtin.service_facts:
+
+- name: Ensure the port is dropped
+  ansible.posix.firewalld:
+    port: "{{ prometheus_port }}/tcp"
+    permanent: true
+    state: disabled
+  when: ansible_facts.services['firewalld.service']['state'] == "running"
+
+- name: remove the systemd unit
+  ansible.builtin.file:
+    path: /etc/systemd/system/prometheus.service
+    state: absent
+
+- name: remove the directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ prometheus_config_dir }}"
+    - "{{ prometheus_data_dir }}"
+
+- name: reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+

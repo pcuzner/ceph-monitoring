@@ -1,0 +1,4 @@
+---
+prometheus_data_dir: /data/prometheus
+#prometheus_retention: 1y
+#prometheus_port: 9095

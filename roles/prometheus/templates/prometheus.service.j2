@@ -1,0 +1,12 @@
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=-/bin/podman rm prometheus-server
+ExecStart=/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --net=host --name prometheus-server --user 65534 -v {{ prometheus_data_dir }}:/prometheus -v {{ prometheus_config_dir }}:/etc/prometheus {{ prometheus_image }}:{{ prometheus_tag }} --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.listen-address=:{{ prometheus_port }} --storage.tsdb.retention.time={{ prometheus_retention }} --web.enable-lifecycle
+
+[Install]
+WantedBy=multi-user.target

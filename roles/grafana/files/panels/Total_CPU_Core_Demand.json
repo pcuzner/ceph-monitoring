@@ -1,0 +1,179 @@
+{
+  "description": "Shows CPU demand for ALL monitored daemons",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 7,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-21T04:37:52Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-23T03:53:19Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "Shows CPU demand for ALL monitored daemons",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "decimals": 1,
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Cluster1"
+          },
+          "properties": [
+            {
+              "id": "custom.fillOpacity",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Cluster2"
+          },
+          "properties": [
+            {
+              "id": "custom.fillOpacity",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "backfill"
+          },
+          "properties": [
+            {
+              "id": "custom.axisPlacement",
+              "value": "right"
+            },
+            {
+              "id": "unit",
+              "value": "locale"
+            },
+            {
+              "id": "custom.fillOpacity",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 0
+    },
+    "id": 18,
+    "options": {
+      "legend": {
+        "calcs": [
+          "min",
+          "last",
+          "max"
+        ],
+        "displayMode": "table",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "none"
+      }
+    },
+    "pluginVersion": "8.4.4",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum((rate(ceph_process_cpu_kernel_seconds_total[30s]) + rate(ceph_process_cpu_user_seconds_total[30s])))",
+        "hide": false,
+        "instant": false,
+        "legendFormat": "Total CPU Demand",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "title": "Total CPU Core Demand",
+    "transformations": [],
+    "type": "timeseries"
+  },
+  "name": "Total CPU Core Demand",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "b3e161f8-55f1-42bf-b828-129d8776d888",
+  "version": 3
+}

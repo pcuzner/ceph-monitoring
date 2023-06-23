@@ -1,0 +1,126 @@
+{
+  "description": "Total physical IOPS for each OSD by Host",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 42,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-21T04:38:29Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-23T04:55:29Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "Total physical IOPS for each OSD by Host",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 10,
+      "x": 0,
+      "y": 0
+    },
+    "id": 29,
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum by(host) ((label_replace((rate(node_disk_reads_completed_total[30s])),\"host\",\"$1\",\"instance\",\"(.*):(.*)\") + label_replace((rate(node_disk_writes_completed_total[30s])),\"host\",\"$1\",\"instance\",\"(.*):(.*)\")) * on(host,device) group_left(ceph_daemon) label_replace(label_replace(ceph_disk_occupation,\"host\",\"$1\",\"instance\",\"(.*):(.*)\"),\"device\",\"$1\",\"device\",\"/dev/(.*)\"))",
+        "hide": false,
+        "instant": false,
+        "legendFormat": "{{host}}",
+        "range": true,
+        "refId": "D"
+      }
+    ],
+    "title": "Physical IOPS by Host",
+    "transformations": [],
+    "type": "timeseries"
+  },
+  "name": "Physical IOPS by Host",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "c2d8e992-3e2c-4e08-8bda-7b4ac5a55ab4",
+  "version": 4
+}

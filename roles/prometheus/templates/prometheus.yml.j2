@@ -31,4 +31,11 @@ scrape_configs:
 
 {% endif %}
     
-
+{% if groups['clients']|length > 0 %}
+  - job_name: 'clients'
+    static_configs:
+      - targets:
+{% for node in groups['clients'] %}
+        - {{ node }}:{{ node_exporter_port }}
+{% endfor %}
+{% endif %}

@@ -1,7 +1,8 @@
 ---
 - name: deploy monitoring environment
-  hosts: ceph
-  gather_facts: no
+  hosts: 
+    - ceph
+  gather_facts: true
   roles:
     - defaults
   tasks:
@@ -11,10 +12,21 @@
     - name: process-exporter
       ansible.builtin.include_role: 
         name: process-exporter
+
+- name: deploy node-exporter to clients
+  hosts:
+    - clients
+  gather_facts: true
+  roles:
+    - defaults
+  tasks:
+    - name: node-exporter
+      ansible.builtin.include_role:
+        name: node-exporter
  
 - name: deploy prometheus
   hosts: prometheus
-  gather_facts: no
+  gather_facts: true
   roles:
     - defaults
   tasks:
@@ -24,7 +36,7 @@
 
 - name: deploy monitoring environment
   hosts: grafana
-  gather_facts: no
+  gather_facts: true
   roles:
     - defaults
   tasks:

@@ -1,5 +1,5 @@
 ---
-- name: Deploy Prometheus Exporters
+- name: Deploy Prometheus Exporters to ceph nodes
   hosts: 
     - ceph
   gather_facts: no
@@ -17,3 +17,12 @@
         include_tasks: roles/prometheus/tasks/reload_prometheus.yml
 
       delegate_to: "{{ groups['prometheus'][0] }}"
+
+- name: Deploy exporters to clients
+  hosts: clients
+  gather_facts: no
+  roles:
+    - defaults
+    - common 
+    - node-exporter
+    

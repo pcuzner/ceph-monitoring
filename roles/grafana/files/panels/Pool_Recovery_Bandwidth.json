@@ -88,7 +88,7 @@
     },
     "id": 49,
     "libraryPanel": {
-      "name": "RBD Pool Recovery Bandwidth"
+      "name": "Pool Recovery Bandwidth"
     },
     "options": {
       "legend": {
@@ -110,17 +110,17 @@
           "uid": "${datasource}"
         },
         "editorMode": "code",
-        "expr": "ceph_pool_recovering_bytes_per_sec * on(pool_id) group_right ceph_pool_metadata{name=\"rbd\"}",
+        "expr": "ceph_pool_recovering_bytes_per_sec * on(pool_id) group_right ceph_pool_metadata",
         "format": "time_series",
         "legendFormat": "{{name}}",
         "range": true,
         "refId": "A"
       }
     ],
-    "title": "RBD Pool Recovery Bandwidth",
+    "title": "Pool Recovery Bandwidth",
     "type": "timeseries"
   },
-  "name": "RBD Pool Recovery Bandwidth",
+  "name": "Pool Recovery Bandwidth",
   "orgId": 1,
   "type": "timeseries",
   "uid": "0Aj3csQVk",

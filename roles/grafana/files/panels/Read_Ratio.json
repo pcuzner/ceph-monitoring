@@ -1,0 +1,144 @@
+{
+  "description": "Physical Reads / Logical Reads (all pools)",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 69,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-28T04:02:52Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-28T04:02:52Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "Physical Reads / Logical Reads (all pools)",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "decimals": 1,
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 3,
+      "w": 4,
+      "x": 0,
+      "y": 8
+    },
+    "id": 25,
+    "libraryPanel": {
+      "name": "Read Ratio",
+      "uid": ""
+    },
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "auto",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "10.0.0",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum ((label_replace((rate(node_disk_reads_completed_total[30s])),\"host\",\"$1\",\"instance\",\"(.*):(.*)\") ) * on(host,device) group_left(ceph_daemon) label_replace(label_replace(ceph_disk_occupation,\"host\",\"$1\",\"instance\",\"(.*):(.*)\"),\"device\",\"$1\",\"device\",\"/dev/(.*)\"))",
+        "instant": false,
+        "legendFormat": "Physical Reads",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum(rate(ceph_pool_rd[40s]))",
+        "hide": false,
+        "instant": false,
+        "legendFormat": "Logical Reads",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "title": "Read Ratio",
+    "transformations": [
+      {
+        "id": "calculateField",
+        "options": {
+          "binary": {
+            "left": "Physical Reads",
+            "operator": "/",
+            "reducer": "sum",
+            "right": "Logical Reads"
+          },
+          "mode": "binary",
+          "reduce": {
+            "reducer": "sum"
+          }
+        }
+      },
+      {
+        "id": "organize",
+        "options": {
+          "excludeByName": {
+            "Logical Reads": true,
+            "Physical Reads": true,
+            "Time": true
+          },
+          "indexByName": {},
+          "renameByName": {}
+        }
+      }
+    ],
+    "type": "stat"
+  },
+  "name": "Read Ratio",
+  "orgId": 1,
+  "type": "stat",
+  "uid": "aea1fb3f-184f-4f53-af40-8f7798a1f3ac",
+  "version": 1
+}

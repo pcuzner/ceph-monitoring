@@ -1,0 +1,125 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 75,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-27T04:28:20Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-27T04:28:20Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 16
+    },
+    "id": 47,
+    "libraryPanel": {
+      "name": "PG Degraded Analysis"
+    },
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "none"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "ceph_pg_degraded * on(pool_id) group_right ceph_pool_metadata",
+        "legendFormat": "{{name}}",
+        "range": true,
+        "refId": "A"
+      }
+    ],
+    "title": "PG Degraded Analysis",
+    "type": "timeseries"
+  },
+  "name": "PG Degraded Analysis",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "Q8cgdRrVz",
+  "version": 1
+}

@@ -1,0 +1,145 @@
+{
+  "description": "",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 4,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 3,
+    "created": "2022-10-21T01:48:18Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-28T03:36:16Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "mappings": [
+          {
+            "options": {
+              "0": {
+                "color": "dark-green",
+                "index": 0,
+                "text": "OK"
+              },
+              "1": {
+                "color": "dark-yellow",
+                "index": 1,
+                "text": "WARN"
+              },
+              "2": {
+                "color": "dark-red",
+                "index": 2,
+                "text": "ERROR"
+              }
+            },
+            "type": "value"
+          }
+        ],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 4,
+      "w": 3,
+      "x": 3,
+      "y": 41
+    },
+    "id": 41,
+    "libraryPanel": {
+      "meta": {
+        "connectedDashboards": 2,
+        "created": "2022-10-21T01:48:18Z",
+        "createdBy": {
+          "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+          "id": 1,
+          "name": "admin"
+        },
+        "folderName": "",
+        "folderUid": "",
+        "updated": "2023-06-27T01:44:55.672943415Z",
+        "updatedBy": {
+          "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+          "id": 1,
+          "name": "admin"
+        }
+      },
+      "name": "Cluster Health",
+      "uid": "qE5rXqI4k",
+      "version": 4
+    },
+    "options": {
+      "colorMode": "background",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "auto",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "text": {
+        "valueSize": 45
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.1.6",
+    "repeat": "ceph_cluster",
+    "repeatDirection": "h",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "exemplar": false,
+        "expr": "ceph_health_status",
+        "instant": true,
+        "interval": "",
+        "legendFormat": "",
+        "refId": "A"
+      }
+    ],
+    "title": "Cluster Health",
+    "type": "stat"
+  },
+  "name": "Cluster Health",
+  "orgId": 1,
+  "type": "stat",
+  "uid": "qE5rXqI4k",
+  "version": 5
+}

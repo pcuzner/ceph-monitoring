@@ -58,7 +58,8 @@
     },
     "id": 73,
     "libraryPanel": {
-      "name": "PGs per OSD - stat panel"
+      "name": "PGs per OSD - stat panel",
+      "uid": "6f4cbc74-b319-447d-bc54-ae14a6934d22"
     },
     "options": {
       "colorMode": "none",

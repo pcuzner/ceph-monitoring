@@ -60,26 +60,8 @@
     },
     "id": 115,
     "libraryPanel": {
-      "meta": {
-        "connectedDashboards": 1,
-        "created": "2023-04-10T22:23:23Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "",
-        "folderUid": "",
-        "updated": "2023-04-25T21:31:42.421952071Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "IOPS Summary",
-      "uid": "pt_AcwL4z",
-      "version": 3
+      "uid": "0bc24481-122e-4c31-9802-e0aa90187660"
     },
     "options": {
       "colorMode": "none",

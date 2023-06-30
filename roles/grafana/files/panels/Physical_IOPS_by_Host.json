@@ -116,7 +116,11 @@
     ],
     "title": "Physical IOPS by Host",
     "transformations": [],
-    "type": "timeseries"
+    "type": "timeseries",
+    "libraryPanel": {
+      "name": "Physical IOPS by Host",
+      "uid": "c2d8e992-3e2c-4e08-8bda-7b4ac5a55ab4"
+    }
   },
   "name": "Physical IOPS by Host",
   "orgId": 1,

@@ -105,7 +105,8 @@
     },
     "id": 138,
     "libraryPanel": {
-      "name": "Read/Write Balance"
+      "name": "Read/Write Balance",
+      "uid": "c776ce5e-c06b-4887-8d7e-a7e9e79e81db"
     },
     "options": {
       "barRadius": 0,

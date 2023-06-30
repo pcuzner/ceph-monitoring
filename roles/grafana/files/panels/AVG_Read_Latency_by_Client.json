@@ -90,7 +90,8 @@
     },
     "id": 261,
     "libraryPanel": {
-      "name": "AVG Read Latency by Client"
+      "name": "AVG Read Latency by Client",
+      "uid": "ff4cd505-bdfc-4e86-9ca9-eccc23248b9c"
     },
     "options": {
       "legend": {

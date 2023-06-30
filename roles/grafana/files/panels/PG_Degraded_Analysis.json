@@ -87,7 +87,8 @@
     },
     "id": 47,
     "libraryPanel": {
-      "name": "PG Degraded Analysis"
+      "name": "PG Degraded Analysis",
+      "uid": "d8f8fc2f-23aa-4154-9cd0-257c2071f420"
     },
     "options": {
       "legend": {

@@ -52,28 +52,8 @@
     },
     "id": 125,
     "libraryPanel": {
-      "description": "This is a point in time view covering the last sample",
-      "meta": {
-        "connectedDashboards": 1,
-        "created": "2023-04-10T21:48:11Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "General",
-        "folderUid": "",
-        "updated": "2023-04-25T21:52:14Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "Thread Analysis - Pie chart",
-      "type": "piechart",
-      "uid": "d_K0dwY4k",
-      "version": 5
+      "uid": "fd455c21-87ba-4b24-a58e-16be9f60c3dc"
     },
     "options": {
       "displayLabels": [

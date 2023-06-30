@@ -159,7 +159,11 @@
         }
       }
     ],
-    "type": "timeseries"
+    "type": "timeseries",
+    "libraryPanel": {
+      "name": "Cluster Physical IOPS",
+      "uid": "efb2558b-3d0c-4cc0-8780-d328af813663"
+    }
   },
   "name": "Cluster Physical IOPS",
   "orgId": 1,

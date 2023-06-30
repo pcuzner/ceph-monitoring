@@ -90,7 +90,8 @@
     },
     "id": 262,
     "libraryPanel": {
-      "name": "AVG Write Latency by Client"
+      "name": "AVG Write Latency by Client",
+      "uid": "ab04d1aa-b727-4374-bb1f-d67de44318fc"
     },
     "options": {
       "legend": {

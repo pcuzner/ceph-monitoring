@@ -104,7 +104,11 @@
     ],
     "title": "IOPS per Core",
     "transformations": [],
-    "type": "stat"
+    "type": "stat",
+    "libraryPanel": {
+      "name": "IOPS per Core",
+      "uid": "c2b34443-3e5e-496c-85b2-4d13e29ae003"
+    }
   },
   "name": "IOPS per Core",
   "orgId": 1,

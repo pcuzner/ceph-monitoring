@@ -66,7 +66,8 @@
     },
     "id": 43,
     "libraryPanel": {
-      "name": "Ceph Health Overview"
+      "name": "Ceph Health Overview",
+      "uid": "c9c63932-f0e1-4011-b959-d1d9cdf349ea"
     },
     "options": {
       "alignValue": "left",

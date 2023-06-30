@@ -89,7 +89,8 @@
     },
     "id": 64,
     "libraryPanel": {
-      "name": "AVG Apply / Commit"
+      "name": "AVG Apply / Commit",
+      "uid": "4a6169e2-9497-45ed-ab58-20808e46ad03"
     },
     "options": {
       "legend": {

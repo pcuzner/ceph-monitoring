@@ -108,7 +108,11 @@
     ],
     "timeFrom": "15m",
     "title": "Client Write Latency Distribution",
-    "type": "heatmap"
+    "type": "heatmap",
+    "libraryPanel": {
+      "name": "Client Write Latency Distribution",
+      "uid": "fa640977-2003-4dab-827f-289dca475635"
+    }
   },
   "name": "Client Write Latency Distribution",
   "orgId": 1,

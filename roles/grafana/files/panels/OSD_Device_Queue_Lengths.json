@@ -114,7 +114,11 @@
     ],
     "title": "OSD Device Queue Lengths",
     "transformations": [],
-    "type": "timeseries"
+    "type": "timeseries",
+    "libraryPanel": {
+      "name": "OSD Device Queue Lengths",
+      "uid": "e74a0e1f-46ce-4710-a131-ca706d9180ae"
+    }
   },
   "name": "OSD Device Queue Lengths",
   "orgId": 1,

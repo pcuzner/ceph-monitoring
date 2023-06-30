@@ -542,7 +542,11 @@
         }
       }
     ],
-    "type": "table"
+    "type": "table",
+    "libraryPanel": {
+      "name": "Pool Details",
+      "uid": "0c426d63-c875-4f97-90da-81e96a1c61df"
+    }
   },
   "name": "Pool Details",
   "orgId": 1,

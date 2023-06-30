@@ -85,7 +85,8 @@
     },
     "id": 205,
     "libraryPanel": {
-      "name": "Total Network drops by Host"
+      "name": "Total Network drops by Host",
+      "uid": "b75bb8ce-9c16-4e93-800c-a5be8bc626e2"
     },
     "options": {
       "legend": {

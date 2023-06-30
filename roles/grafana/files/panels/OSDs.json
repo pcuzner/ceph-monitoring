@@ -57,7 +57,8 @@
     },
     "id": 39,
     "libraryPanel": {
-      "name": "OSDs"
+      "name": "OSDs",
+      "uid": "c11c4f4e-195b-4cf3-a9b3-5793990c05d6"
     },
     "options": {
       "colorMode": "none",

@@ -59,28 +59,8 @@
     },
     "id": 185,
     "libraryPanel": {
-      "description": "IOPS per core average over the last hour",
-      "meta": {
-        "connectedDashboards": 1,
-        "created": "2023-04-25T21:51:27Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "General",
-        "folderUid": "",
-        "updated": "2023-05-25T23:09:40Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "AVG IOPS per Core",
-      "type": "stat",
-      "uid": "7lZLqeE4z",
-      "version": 4
+      "uid": "2a3d1840-72a8-4a24-beea-e31e5f5a1872"
     },
     "options": {
       "colorMode": "none",

@@ -58,7 +58,8 @@
     },
     "id": 61,
     "libraryPanel": {
-      "name": "Pool Count"
+      "name": "Pool Count",
+      "uid": "9b21149a-1be9-4264-ba9f-cf3cf49249a2"
     },
     "options": {
       "colorMode": "none",

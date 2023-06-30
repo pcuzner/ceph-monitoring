@@ -57,7 +57,8 @@
     },
     "id": 37,
     "libraryPanel": {
-      "name": "OSD Hosts"
+      "name": "OSD Hosts",
+      "uid": "a9eecd45-35f0-4c75-a0e1-8f039b23e154"
     },
     "options": {
       "colorMode": "none",

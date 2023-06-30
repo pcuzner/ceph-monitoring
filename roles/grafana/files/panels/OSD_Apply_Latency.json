@@ -89,7 +89,8 @@
     },
     "id": 207,
     "libraryPanel": {
-      "name": "OSD Apply Latency"
+      "name": "OSD Apply Latency",
+      "uid": "cd7e549a-18bd-44f6-902b-cb5646425631"
     },
     "options": {
       "legend": {

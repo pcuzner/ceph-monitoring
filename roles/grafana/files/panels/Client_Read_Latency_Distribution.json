@@ -109,7 +109,11 @@
     ],
     "timeFrom": "15m",
     "title": "Client Read Latency Distribution",
-    "type": "heatmap"
+    "type": "heatmap",
+    "libraryPanel": {
+      "name": "Client Read Latency Distribution",
+      "uid": "a8b7aee5-bdc9-4652-9868-04ad7fbeeaae"
+    }
   },
   "name": "Client Read Latency Distribution",
   "orgId": 1,

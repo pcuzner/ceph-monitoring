@@ -85,28 +85,8 @@
     },
     "id": 12,
     "libraryPanel": {
-      "description": "Network receive + transmit bytes for all active (UP) physical interfaces on each host in the cluster",
-      "meta": {
-        "connectedDashboards": 1,
-        "created": "2023-04-04T05:01:54Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "General",
-        "folderUid": "",
-        "updated": "2023-04-04T07:55:15Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "Total Bandwidth by Host",
-      "type": "timeseries",
-      "uid": "3cA1mHY4z",
-      "version": 3
+      "uid": "da12a958-ea48-43ec-be89-fba515211e1e"
     },
     "options": {
       "legend": {

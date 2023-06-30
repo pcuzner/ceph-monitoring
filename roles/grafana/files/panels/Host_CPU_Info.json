@@ -80,7 +80,8 @@
     },
     "id": 70,
     "libraryPanel": {
-      "name": "Host CPU Info"
+      "name": "Host CPU Info",
+      "uid": "ab605fb6-a940-4484-9dc1-9295fbe786a1"
     },
     "options": {
       "colorMode": "none",

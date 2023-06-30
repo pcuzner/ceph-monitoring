@@ -169,7 +169,11 @@
     ],
     "title": "Total CPU Core Demand",
     "transformations": [],
-    "type": "timeseries"
+    "type": "timeseries",
+    "libraryPanel": {
+      "name": "Total CPU Core Demand",
+      "uid": "b3e161f8-55f1-42bf-b828-129d8776d888"
+    }
   },
   "name": "Total CPU Core Demand",
   "orgId": 1,

@@ -57,7 +57,8 @@
     },
     "id": 82,
     "libraryPanel": {
-      "name": "PGs"
+      "name": "PGs",
+      "uid": "553a18d4-e912-4fa5-a268-3f12c48e5913"
     },
     "options": {
       "colorMode": "none",

@@ -103,7 +103,8 @@
     },
     "id": 237,
     "libraryPanel": {
-      "name": "Memory Usage Across Workload VMs"
+      "name": "Memory Usage Across Workload VMs",
+      "uid": "699d2d2c-a996-4d8b-b434-b8c87f595a00"
     },
     "options": {
       "barRadius": 0,

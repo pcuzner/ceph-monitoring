@@ -88,7 +88,8 @@
     },
     "id": 255,
     "libraryPanel": {
-      "name": "Network TX by Worker"
+      "name": "Network TX by Worker",
+      "uid": "8f472eb2-a56a-492c-a2b5-838f4d7eaae4"
     },
     "options": {
       "legend": {

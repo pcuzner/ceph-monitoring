@@ -60,7 +60,8 @@
     },
     "id": 179,
     "libraryPanel": {
-      "name": "Object Ops"
+      "name": "Object Ops",
+      "uid": "217fb530-d7ca-4cdc-b4b9-23cc0e79cbf1"
     },
     "options": {
       "colorMode": "none",

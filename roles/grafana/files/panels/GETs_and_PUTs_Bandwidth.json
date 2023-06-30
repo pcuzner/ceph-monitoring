@@ -89,7 +89,8 @@
     },
     "id": 145,
     "libraryPanel": {
-      "name": "GETs and PUTs Bandwidth"
+      "name": "GETs and PUTs Bandwidth",
+      "uid": "2b0700e0-996a-40fc-8ecf-364b955bc7c9"
     },
     "options": {
       "legend": {

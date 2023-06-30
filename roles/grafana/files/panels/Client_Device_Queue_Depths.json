@@ -112,7 +112,11 @@
       }
     ],
     "title": "Client Device Queue Depths",
-    "type": "timeseries"
+    "type": "timeseries",
+    "libraryPanel": {
+      "name": "Client Device Queue Depths",
+      "uid": "e42f7e18-71be-4ee1-adc7-52f7c473e29b"
+    }
   },
   "name": "Client Device Queue Depths",
   "orgId": 1,

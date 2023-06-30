@@ -88,7 +88,8 @@
     },
     "id": 49,
     "libraryPanel": {
-      "name": "Pool Recovery Bandwidth"
+      "name": "Pool Recovery Bandwidth",
+      "uid": "d8217c66-97e7-455c-9083-88fdb1f93dec"
     },
     "options": {
       "legend": {

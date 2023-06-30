@@ -6,3 +6,6 @@ your-grafana-server.com
 
 [ceph]
 ceph-node-1 mgr=true
+
+[clients]
+client-1

@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 
 # Examples
-# ./extract-panels.py --grafana http://e23-h29-740xd.alias.bos.scalelab.redhat.com:3000 --proxy http://192.168.122.2:3128
-# ./extract-panels.py --grafana http://e23-h29-740xd.alias.bos.scalelab.redhat.com:3000 --proxy http://192.168.122.2:3128 --mode extract
-# ./extract-panels.py --grafana http://e23-h29-740xd.alias.bos.scalelab.redhat.com:3000 --proxy http://192.168.122.2:3128 --panel-uid 9b21149a-1be9-4264-ba9f-cf3cf49249a2
+# ./extract-panels.py --grafana http://grafana:3000 --proxy http://192.168.122.2:3128
+# ./extract-panels.py --grafana http://grafana:3000 --proxy http://192.168.122.2:3128 --mode extract
+# ./extract-panels.py --grafana http://grafana:3000 --proxy http://192.168.122.2:3128 --panel-uid 9b21149a-1be9-4264-ba9f-cf3cf49249a2
 
 import os
 import sys
 import json
 import requests
 from urllib.parse import urlparse
+import uuid
+from typing import Dict, Any, Tuple, List
 
 import argparse
 
@@ -17,7 +19,8 @@ default_mode = "list"
 default_dir = "panels"
 
 
-def parser():
+def parser() -> argparse.Namespace:
+    """Parse the command line parameters"""
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", type=str, choices=["list", "extract"], default=default_mode, help=f"operation mode of the tool (default={default_mode})")
     parser.add_argument("--panel-uid", type=str, default="ALL", help="UID of the panel to extract from Grafana")
@@ -26,17 +29,18 @@ def parser():
     parser.add_argument("--proxy-user",type=str, default="", help="username for proxy access [optional]")
     parser.add_argument("--proxy-password",type=str, default="", help="password for proxy access [optional]")
     parser.add_argument("--output-dir", type=str, default=default_dir, help=f"Output directory for panels(default={default_dir})")
-
     return parser.parse_args()
 
 
-def _build_fname(panel):
-    fname = f"{panel['name'].replace(' ', '_')}.json"
+def _build_fname(panel_name: str) -> str:
+    """Build a filename based on the panels name, ensuring any incompatible chars are replaced"""
+    fname = f"{panel_name.replace(' ', '_')}.json"
     fname = fname.replace('/', '')
     return fname
 
 
-def _build_proxy(args):
+def _build_proxy(args: argparse.Namespace) -> Dict[str, str]:
+    """Assemble a proxy configuration dict"""
     if not args.proxy_url:
         return {}
     
@@ -50,7 +54,8 @@ def _build_proxy(args):
     }
 
 
-def list_panels(args):
+def list_panels(args: argparse.Namespace) -> None:
+    """Print a list of panels with UUID to stdout"""
     print("Listing all library panel names")
     library_element_api = f"{args.grafana_url}/api/library-elements"
     proxy = _build_proxy(args)
@@ -66,13 +71,46 @@ def list_panels(args):
     for panel in elements:
         print(f"{panel['uid']} ... {panel['name']}")
 
-def _dump_panel(panel):
-    fname = _build_fname(panel)
-    print(f"Writing {fname} to {args.output_dir}")
-    with open(os.path.join(args.output_dir, fname), "w") as f:
+
+def valid_uuid(uuid_str: str) -> bool:
+    """Validate whether a given string is in a valid UUID format"""
+    try:
+        uuid.UUID(uuid_str)
+    except:
+        return False
+    return True
+
+
+def sanitize_panel(panel: Dict[str, Any]) -> Dict[str, Any]:
+    """Sanitize panel JSON to make it resusable"""
+    if not valid_uuid(panel['uid']):
+        print(f"Setting uuid for {panel['name']}")
+        panel['uid'] = uuid.uuid4()
+
+    lp = panel['model'].get('libraryPanel', {})
+    if not lp:
+        # doesn't exist so seed it
+        print(f"Setting libraryPanel for {panel['name']}")
+        panel['model']['libraryPanel'] = {
+            "name": panel['name'],
+            "uid": panel['uid']
+        }
+    return panel
+
+
+def _dump_panel(output_dir: str, panel: Dict[str, Any]) -> None:
+    """Write a given panel to an output file"""
+    fname = _build_fname(panel['name'])
+    print(f"Writing {fname} to {output_dir}")
+
+    panel = sanitize_panel(panel)
+
+    with open(os.path.join(output_dir, fname), "w") as f:
         f.write(json.dumps(panel, indent=2))
 
-def extract_panels(args):
+
+def extract_panels(args: argparse.Namespace) -> None:
+    """Extract a single panel or all panels from the Grafana instance"""
     if args.panel_uid != "ALL":
 
         print(f"Fetching panel with uid of {args.panel_uid}")
@@ -85,7 +123,7 @@ def extract_panels(args):
 
         js = resp.json()
         panel = js['result']
-        _dump_panel(panel)
+        _dump_panel(args.output_dir, panel)
     else:
         print(f"Dumping all library panel to {args.output_dir}")
         library_element_api = f"{args.grafana_url}/api/library-elements"
@@ -99,11 +137,11 @@ def extract_panels(args):
         result = js['result']
         elements = result['elements']
         for panel in elements:
-            _dump_panel(panel)
+            _dump_panel(args.output_dir, panel)
 
 
-
-def _parse_url(url_string):
+def _parse_url(url_string: str) -> Tuple[bool, List[str]]:
+    """Check that a url string is valid"""
 
     errs = []
     try:
@@ -126,7 +164,8 @@ def _parse_url(url_string):
     return len(errs) == 0, errs
 
 
-def valid_args(args):
+def valid_args(args: argparse.Namespace) -> bool:
+    """Validate the runtime arguments"""
     def _print_errs(errs):
         for e in errs:
             print(f"\t- {e}")
@@ -154,7 +193,8 @@ def valid_args(args):
     return args_ok
 
 
-def main(args):
+def main() -> None:
+    args = parser()
 
     if not valid_args(args):
         print("Aborting")
@@ -176,6 +216,5 @@ def main(args):
     
 
 if __name__ == "__main__":
-    args = parser()
 
-    main(args)
+    main()

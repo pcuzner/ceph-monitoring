@@ -21,8 +21,16 @@ The ```extract-panels.py``` script provides the ability to extract panels from a
 # Exporting Dashboards
 When you want to export a dashboard that may be imported into another deployment of the ceph-monitoring project, remember to export select the "Export for sharing externally" toggle switch on the Share > Export modal dialog.
 
-# Ansible Collections
-The playbooks use the ansible.posix.firewalld module which may not be installed on your system by default. To fix;
+# Ansible Collections and Dependencies
+The playbooks use the a couple of galaxy modules which may not be installed on your system by default. To fix;
 ```
 # ansible-galaxy collection install ansible.posix
+# ansible-galaxy collection install community.general
+```
+
+You may also need to install ```python3-jmespath```
+This may work if ansible is using your main python interpretter, but if it's not you may have to install jmespath with pip pointing to the specific python environment.  
+e.g.
+```
+pip3.9 install jmespath
 ```

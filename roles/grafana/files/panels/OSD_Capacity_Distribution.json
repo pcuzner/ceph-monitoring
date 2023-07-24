@@ -81,7 +81,8 @@
     },
     "id": 52,
     "libraryPanel": {
-      "name": "OSD Capacity Distribution"
+      "name": "OSD Capacity Distribution",
+      "uid": "faa4289e-fe67-44b7-b2dd-fb0c86b989da"
     },
     "options": {
       "barRadius": 0,
@@ -142,6 +143,6 @@
   "name": "OSD Capacity Distribution",
   "orgId": 1,
   "type": "barchart",
-  "uid": "3DoHn2XVk",
+  "uid": "faa4289e-fe67-44b7-b2dd-fb0c86b989da",
   "version": 1
 }

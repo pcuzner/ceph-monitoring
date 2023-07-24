@@ -88,7 +88,8 @@
     },
     "id": 47,
     "libraryPanel": {
-      "name": "PG Activity by Pool"
+      "name": "PG Activity by Pool",
+      "uid": "87563508-b6fe-463e-b168-ad89c0bdef26"
     },
     "options": {
       "legend": {
@@ -169,6 +170,6 @@
   "name": "PG Activity by Pool",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "VevLKQU4z",
+  "uid": "87563508-b6fe-463e-b168-ad89c0bdef26",
   "version": 1
 }

@@ -75,7 +75,8 @@
     },
     "id": 51,
     "libraryPanel": {
-      "name": "PG Distribution"
+      "name": "PG Distribution",
+      "uid": "596650af-e7a9-4a48-882c-a2d90df6e4ff"
     },
     "options": {
       "barRadius": 0,
@@ -135,6 +136,6 @@
   "name": "PG Distribution",
   "orgId": 1,
   "type": "barchart",
-  "uid": "fVDD72uVk",
+  "uid": "596650af-e7a9-4a48-882c-a2d90df6e4ff",
   "version": 1
 }

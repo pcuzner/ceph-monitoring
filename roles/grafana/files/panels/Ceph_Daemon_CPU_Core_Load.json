@@ -1,0 +1,142 @@
+{
+  "description": "CPU usage (%) for each daemon monitored",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 64,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-21T04:38:52Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-23T04:07:52Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "CPU usage (%) for each daemon monitored",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 10,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "decimals": 2,
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "percent"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 10,
+      "w": 8,
+      "x": 0,
+      "y": 8
+    },
+    "id": 16,
+    "options": {
+      "legend": {
+        "calcs": [
+          "min",
+          "last",
+          "max"
+        ],
+        "displayMode": "table",
+        "placement": "bottom",
+        "showLegend": true,
+        "sortBy": "Max",
+        "sortDesc": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "pluginVersion": "8.4.4",
+    "repeat": "ceph_cluster",
+    "repeatDirection": "h",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "rate(ceph_process_cpu_kernel_seconds_total[30s]) + rate(ceph_process_cpu_user_seconds_total[30s])",
+        "hide": false,
+        "instant": false,
+        "legendFormat": "{{daemon}}",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "title": "Ceph Daemon CPU Core Load",
+    "transformations": [],
+    "type": "timeseries",
+    "libraryPanel": {
+      "name": "Ceph Daemon CPU Core Load",
+      "uid": "a4eee0a7-34f3-47ff-8f91-5c92ba01b870"
+    }
+  },
+  "name": "Ceph Daemon CPU Core Load",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "a4eee0a7-34f3-47ff-8f91-5c92ba01b870",
+  "version": 9
+}

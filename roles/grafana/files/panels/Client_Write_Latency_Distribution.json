@@ -2,23 +2,23 @@
   "description": "",
   "folderId": 0,
   "folderUid": "",
-  "id": 46,
+  "id": 12,
   "kind": 1,
   "meta": {
-    "connectedDashboards": 1,
-    "created": "2023-05-23T01:01:40Z",
+    "connectedDashboards": 0,
+    "created": "2023-06-21T04:37:57Z",
     "createdBy": {
-      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-      "id": 2,
-      "name": "pcuzner"
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
     },
     "folderName": "General",
     "folderUid": "",
-    "updated": "2023-05-23T01:55:43Z",
+    "updated": "2023-06-25T23:53:56Z",
     "updatedBy": {
-      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-      "id": 2,
-      "name": "pcuzner"
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
     }
   },
   "model": {
@@ -43,34 +43,12 @@
       "overrides": []
     },
     "gridPos": {
-      "h": 10,
-      "w": 10,
-      "x": 10,
-      "y": 35
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 0
     },
-    "id": 259,
-    "libraryPanel": {
-      "meta": {
-        "connectedDashboards": 0,
-        "created": "2023-05-23T01:01:40.996131833Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "",
-        "folderUid": "",
-        "updated": "2023-05-23T01:01:40.996131901Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
-      "name": "Client Write Latency Distribution",
-      "uid": "GNuN_7Q4k",
-      "version": 1
-    },
+    "id": 31,
     "options": {
       "calculate": true,
       "calculation": {
@@ -92,9 +70,7 @@
       "exemplars": {
         "color": "rgba(255,0,255,0.7)"
       },
-      "filterValues": {
-        "le": 1e-9
-      },
+      "filterValues": {},
       "legend": {
         "show": true
       },
@@ -112,7 +88,7 @@
         "unit": "s"
       }
     },
-    "pluginVersion": "9.1.6",
+    "pluginVersion": "10.0.0",
     "targets": [
       {
         "datasource": {
@@ -121,7 +97,7 @@
         },
         "editorMode": "code",
         "exemplar": false,
-        "expr": "(rate(node_disk_write_time_seconds_total{device=~\"rbd.*p1\",job=\"fio\"}[30s]) / rate(node_disk_writes_completed_total[30s])) ",
+        "expr": "(rate(node_disk_write_time_seconds_total{device=~\"rbd.*p1\"}[30s]) / rate(node_disk_writes_completed_total[30s])) ",
         "format": "time_series",
         "instant": false,
         "interval": "",
@@ -132,11 +108,15 @@
     ],
     "timeFrom": "15m",
     "title": "Client Write Latency Distribution",
-    "type": "heatmap"
+    "type": "heatmap",
+    "libraryPanel": {
+      "name": "Client Write Latency Distribution",
+      "uid": "fa640977-2003-4dab-827f-289dca475635"
+    }
   },
   "name": "Client Write Latency Distribution",
   "orgId": 1,
   "type": "heatmap",
-  "uid": "GNuN_7Q4k",
-  "version": 2
+  "uid": "fa640977-2003-4dab-827f-289dca475635",
+  "version": 4
 }

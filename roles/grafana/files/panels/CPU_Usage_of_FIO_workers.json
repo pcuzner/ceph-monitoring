@@ -91,26 +91,8 @@
     },
     "id": 235,
     "libraryPanel": {
-      "meta": {
-        "connectedDashboards": 0,
-        "created": "2023-05-23T04:54:40.779086844Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "",
-        "folderUid": "",
-        "updated": "2023-05-23T04:54:40.779086972Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "CPU Usage of FIO workers",
-      "uid": "FcT-IVw4k",
-      "version": 1
+      "uid": "b21af779-8df4-4274-a3c1-64efdcac3d2e"
     },
     "options": {
       "legend": {
@@ -144,6 +126,6 @@
   "name": "CPU Usage of FIO workers",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "FcT-IVw4k",
+  "uid": "b21af779-8df4-4274-a3c1-64efdcac3d2e",
   "version": 2
 }

@@ -2,19 +2,19 @@
   "description": "",
   "folderId": 0,
   "folderUid": "",
-  "id": 8,
+  "id": 35,
   "kind": 1,
   "meta": {
     "connectedDashboards": 2,
-    "created": "2022-10-21T02:30:04Z",
+    "created": "2023-04-17T02:11:37Z",
     "createdBy": {
-      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
-      "id": 1,
-      "name": "admin"
+      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
+      "id": 2,
+      "name": "pcuzner"
     },
     "folderName": "General",
     "folderUid": "",
-    "updated": "2023-04-05T04:20:47Z",
+    "updated": "2023-04-17T02:11:37Z",
     "updatedBy": {
       "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
       "id": 2,
@@ -62,6 +62,7 @@
             "mode": "off"
           }
         },
+        "decimals": 0,
         "mappings": [],
         "min": 0,
         "thresholds": {
@@ -83,32 +84,14 @@
     },
     "gridPos": {
       "h": 8,
-      "w": 12,
+      "w": 9,
       "x": 0,
-      "y": 0
+      "y": 17
     },
     "id": 22,
     "libraryPanel": {
-      "meta": {
-        "connectedDashboards": 2,
-        "created": "2022-10-21T02:30:04Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
-          "id": 1,
-          "name": "admin"
-        },
-        "folderName": "",
-        "folderUid": "",
-        "updated": "2023-04-05T04:20:31.188117399Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "Per Pool IOPS",
-      "uid": "H49N33IVz",
-      "version": 2
+      "uid": "19c20511-eec5-4979-afd9-e65519f7e78b"
     },
     "options": {
       "legend": {
@@ -119,7 +102,7 @@
       },
       "tooltip": {
         "mode": "multi",
-        "sort": "none"
+        "sort": "desc"
       }
     },
     "repeat": "ceph_cluster",
@@ -131,18 +114,18 @@
           "uid": "${datasource}"
         },
         "editorMode": "code",
-        "expr": "(rate(ceph_pool_rd[30s]) + rate(ceph_pool_wr[30s])) * on(job,pool_id) group_right ceph_pool_metadata",
+        "expr": "(rate(ceph_pool_rd[40s]) + rate(ceph_pool_wr[40s])) * on(job,pool_id) group_right ceph_pool_metadata",
         "legendFormat": "{{name}}",
         "range": true,
         "refId": "A"
       }
     ],
-    "title": "$ceph_cluster Per Pool IOPS",
+    "title": "Per Pool IOPS",
     "type": "timeseries"
   },
   "name": "Per Pool IOPS",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "H49N33IVz",
-  "version": 3
+  "uid": "19c20511-eec5-4979-afd9-e65519f7e78b",
+  "version": 1
 }

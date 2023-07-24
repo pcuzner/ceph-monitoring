@@ -1,0 +1,129 @@
+{
+  "id": 54,
+  "orgId": 1,
+  "folderId": 0,
+  "folderUid": "",
+  "uid": "c81f1703-b95c-4b37-a3ff-a5c7bccfd23d",
+  "name": "Write Ratio",
+  "kind": 1,
+  "type": "stat",
+  "description": "Physical Writes / Logical Writes (all pools)",
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "Physical Writes / Logical Writes (all pools)",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "decimals": 1,
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 4,
+      "w": 2,
+      "x": 22,
+      "y": 0
+    },
+    "id": 32,
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "auto",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "10.0.0",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum ((label_replace((rate(node_disk_writes_completed_total[30s])),\"host\",\"$1\",\"instance\",\"(.*):(.*)\") ) * on(host,device) group_left(ceph_daemon) label_replace(label_replace(ceph_disk_occupation,\"host\",\"$1\",\"instance\",\"(.*):(.*)\"),\"device\",\"$1\",\"device\",\"/dev/(.*)\"))",
+        "hide": true,
+        "instant": false,
+        "legendFormat": "Physical Reads",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum(rate(ceph_pool_wr[40s]))",
+        "hide": true,
+        "instant": false,
+        "legendFormat": "Logical Reads",
+        "range": true,
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum ((label_replace((rate(node_disk_writes_completed_total[30s])),\"host\",\"$1\",\"instance\",\"(.*):(.*)\") ) * on(host,device) group_left(ceph_daemon) label_replace(label_replace(ceph_disk_occupation,\"host\",\"$1\",\"instance\",\"(.*):(.*)\"),\"device\",\"$1\",\"device\",\"/dev/(.*)\")) / clamp_min(sum(rate(ceph_pool_wr[40s])), 1)",
+        "hide": false,
+        "instant": false,
+        "range": true,
+        "refId": "C"
+      }
+    ],
+    "title": "Write Ratio",
+    "transformations": [],
+    "type": "stat",
+    "libraryPanel": {
+      "name": "Write Ratio",
+      "uid": "c81f1703-b95c-4b37-a3ff-a5c7bccfd23d"
+    }
+  },
+  "version": 2,
+  "meta": {
+    "folderName": "General",
+    "folderUid": "",
+    "connectedDashboards": 1,
+    "created": "2023-06-30T00:45:28Z",
+    "updated": "2023-07-03T02:29:19Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  }
+}

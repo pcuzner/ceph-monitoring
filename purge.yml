@@ -15,7 +15,7 @@
         msg: Purge process aborted
       when: ok_to_delete != "yes"
 
-- name: Purging exporters
+- name: Purging exporters from ceph nodes
   hosts: ceph
   gather_facts: no
   roles: 
@@ -25,6 +25,15 @@
       ansible.builtin.include_tasks: roles/node-exporter/tasks/purge.yml
     - name: purge process-exporter daemons
       ansible.builtin.include_tasks: roles/process-exporter/tasks/purge.yml
+
+- name: Purging exporters from client nodes
+  hosts: clients
+  gather_facts: no
+  roles: 
+    - defaults
+  tasks:
+    - name: purge node-exporter daemons
+      ansible.builtin.include_tasks: roles/node-exporter/tasks/purge.yml
 
 - name: Purging Grafana
   hosts: grafana

@@ -1,24 +1,24 @@
 {
-  "description": "",
+  "description": "All IOPS across every pool ",
   "folderId": 0,
   "folderUid": "",
-  "id": 21,
+  "id": 18,
   "kind": 1,
   "meta": {
-    "connectedDashboards": 1,
-    "created": "2023-04-10T21:50:52Z",
+    "connectedDashboards": 0,
+    "created": "2023-06-21T04:38:03Z",
     "createdBy": {
-      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-      "id": 2,
-      "name": "pcuzner"
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
     },
     "folderName": "General",
     "folderUid": "",
-    "updated": "2023-05-25T23:09:21Z",
+    "updated": "2023-06-23T04:20:57Z",
     "updatedBy": {
-      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-      "id": 2,
-      "name": "pcuzner"
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
     }
   },
   "model": {
@@ -26,7 +26,7 @@
       "type": "prometheus",
       "uid": "${datasource}"
     },
-    "description": "",
+    "description": "All IOPS across every pool ",
     "fieldConfig": {
       "defaults": {
         "color": {
@@ -52,34 +52,12 @@
       "overrides": []
     },
     "gridPos": {
-      "h": 5,
-      "w": 4,
-      "x": 20,
-      "y": 18
+      "h": 4,
+      "w": 3,
+      "x": 0,
+      "y": 0
     },
-    "id": 91,
-    "libraryPanel": {
-      "meta": {
-        "connectedDashboards": 1,
-        "created": "2023-04-10T21:50:52Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "",
-        "folderUid": "",
-        "updated": "2023-05-24T00:26:39.340319383Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
-      "name": "IOPS per Core",
-      "uid": "6WvLdwL4k",
-      "version": 3
-    },
+    "id": 21,
     "options": {
       "colorMode": "none",
       "graphMode": "none",
@@ -94,7 +72,7 @@
       },
       "textMode": "auto"
     },
-    "pluginVersion": "9.1.6",
+    "pluginVersion": "10.0.0",
     "targets": [
       {
         "datasource": {
@@ -103,7 +81,7 @@
         },
         "editorMode": "code",
         "exemplar": false,
-        "expr": "((rate(ceph_pool_rd{pool_id=\"2\"}[40s]) + rate(ceph_pool_wr[40s])) * on(job,pool_id) group_right ceph_pool_metadata)",
+        "expr": "(sum(((rate(ceph_pool_rd[40s]) + rate(ceph_pool_wr[40s])) * on(job,pool_id) group_right ceph_pool_metadata))) / (sum((rate(ceph_process_cpu_kernel_seconds_total{daemon=~\"osd.*\"}[40s]) + rate(ceph_process_cpu_kernel_seconds_total{daemon=~\"osd.*\"}[40s]))) / 100)",
         "format": "time_series",
         "hide": false,
         "instant": true,
@@ -117,53 +95,24 @@
           "uid": "${datasource}"
         },
         "editorMode": "code",
-        "exemplar": false,
-        "expr": "(sum((label_replace(sum by(id) (rate(container_cpu_usage_seconds_total{id=~\".*(ceph-.*)(osd).*.service\"}[30s])),\"shortname\",\"$2\", \"id\", \"(.*)@(.*)\"))) )",
-        "format": "time_series",
-        "hide": false,
-        "instant": true,
-        "legendFormat": "__auto",
-        "range": false,
+        "expr": "sum((rate(ceph_process_cpu_kernel_seconds_total{daemon=~\"osd.*\"}[40s]) + rate(ceph_process_cpu_kernel_seconds_total{daemon=~\"osd.*\"}[40s]))) / 100",
+        "hide": true,
+        "instant": false,
+        "range": true,
         "refId": "B"
       }
     ],
     "title": "IOPS per Core",
-    "transformations": [
-      {
-        "id": "calculateField",
-        "options": {
-          "alias": "IOPS Per Core",
-          "binary": {
-            "left": "{compression_mode=\"none\", description=\"replica:3\", instance=\"f08-h03-000-1029u:9283\", job=\"ceph\", name=\"rbd\", pool_id=\"2\", type=\"replicated\"}",
-            "operator": "/",
-            "reducer": "sum",
-            "right": "(sum((label_replace(sum by(id) (rate(container_cpu_usage_seconds_total{id=~\".*(ceph-.*)(osd).*.service\"}[30s])),\"shortname\",\"$2\", \"id\", \"(.*)@(.*)\"))) )"
-          },
-          "mode": "binary",
-          "reduce": {
-            "reducer": "sum"
-          }
-        }
-      },
-      {
-        "id": "organize",
-        "options": {
-          "excludeByName": {
-            "(sum((label_replace(sum by(id) (rate(container_cpu_usage_seconds_total{id=~\".*(ceph-.*)(osd).*.service\"}[30s])),\"shortname\",\"$2\", \"id\", \"(.*)@(.*)\"))) )": true,
-            "Time": true,
-            "{compression_mode=\"none\", description=\"replica:3\", instance=\"f08-h03-000-1029u:9283\", job=\"ceph\", name=\"rbd\", pool_id=\"2\", type=\"replicated\"}": true,
-            "{compression_mode=\"none\", description=\"replica:3\", instance=\"f08-h05-000-1029u:9283\", job=\"ceph\", name=\"rbd\", pool_id=\"2\", type=\"replicated\"}": true
-          },
-          "indexByName": {},
-          "renameByName": {}
-        }
-      }
-    ],
-    "type": "stat"
+    "transformations": [],
+    "type": "stat",
+    "libraryPanel": {
+      "name": "IOPS per Core",
+      "uid": "c2b34443-3e5e-496c-85b2-4d13e29ae003"
+    }
   },
   "name": "IOPS per Core",
   "orgId": 1,
   "type": "stat",
-  "uid": "6WvLdwL4k",
+  "uid": "c2b34443-3e5e-496c-85b2-4d13e29ae003",
   "version": 4
 }

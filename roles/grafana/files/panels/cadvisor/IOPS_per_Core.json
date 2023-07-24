@@ -2,11 +2,11 @@
   "description": "",
   "folderId": 0,
   "folderUid": "",
-  "id": 20,
+  "id": 21,
   "kind": 1,
   "meta": {
     "connectedDashboards": 1,
-    "created": "2023-04-10T21:50:40Z",
+    "created": "2023-04-10T21:50:52Z",
     "createdBy": {
       "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
       "id": 2,
@@ -14,7 +14,7 @@
     },
     "folderName": "General",
     "folderUid": "",
-    "updated": "2023-04-13T05:14:46Z",
+    "updated": "2023-05-25T23:09:21Z",
     "updatedBy": {
       "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
       "id": 2,
@@ -30,7 +30,7 @@
     "fieldConfig": {
       "defaults": {
         "color": {
-          "mode": "thresholds"
+          "mode": "fixed"
         },
         "decimals": 0,
         "mappings": [],
@@ -46,7 +46,8 @@
               "value": 80
             }
           ]
-        }
+        },
+        "unit": "locale"
       },
       "overrides": []
     },
@@ -54,31 +55,29 @@
       "h": 5,
       "w": 4,
       "x": 20,
-      "y": 21
+      "y": 18
     },
-    "id": 96,
+    "id": 91,
     "libraryPanel": {
-      "description": "",
       "meta": {
         "connectedDashboards": 1,
-        "created": "2023-04-10T21:50:40Z",
+        "created": "2023-04-10T21:50:52Z",
         "createdBy": {
           "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
           "id": 2,
           "name": "pcuzner"
         },
-        "folderName": "General",
+        "folderName": "",
         "folderUid": "",
-        "updated": "2023-04-12T00:16:28Z",
+        "updated": "2023-05-24T00:26:39.340319383Z",
         "updatedBy": {
           "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
           "id": 2,
           "name": "pcuzner"
         }
       },
-      "name": "Physical Reads per Client Read",
-      "type": "stat",
-      "uid": "6BjBOwY4k",
+      "name": "IOPS per Core",
+      "uid": "6WvLdwL4k",
       "version": 3
     },
     "options": {
@@ -104,8 +103,9 @@
         },
         "editorMode": "code",
         "exemplar": false,
-        "expr": "sum(label_replace(rate(node_disk_reads_completed_total{device=~\"nvme.*\",job=\"node-exporter\"}[30s]),\"exported_instance\",\"$1.rdu2.scalelab.redhat.com\",\"instance\",\"(.*):(.*)\") * on(exported_instance, device) group_left(ceph_daemon) label_replace(ceph_disk_occupation,\"device\",\"$1\",\"devices\",\"(.*)\"))",
-        "format": "table",
+        "expr": "((rate(ceph_pool_rd{pool_id=\"2\"}[40s]) + rate(ceph_pool_wr[40s])) * on(job,pool_id) group_right ceph_pool_metadata)",
+        "format": "time_series",
+        "hide": false,
         "instant": true,
         "legendFormat": "__auto",
         "range": false,
@@ -118,8 +118,8 @@
         },
         "editorMode": "code",
         "exemplar": false,
-        "expr": "sum(rate(ceph_pool_rd[30s])) or vector(1)",
-        "format": "table",
+        "expr": "(sum((label_replace(sum by(id) (rate(container_cpu_usage_seconds_total{id=~\".*(ceph-.*)(osd).*.service\"}[30s])),\"shortname\",\"$2\", \"id\", \"(.*)@(.*)\"))) )",
+        "format": "time_series",
         "hide": false,
         "instant": true,
         "legendFormat": "__auto",
@@ -127,17 +127,17 @@
         "refId": "B"
       }
     ],
-    "title": "Physical Read Ratio per Client Read",
+    "title": "IOPS per Core",
     "transformations": [
       {
         "id": "calculateField",
         "options": {
-          "alias": "WriteRatio",
+          "alias": "IOPS Per Core",
           "binary": {
-            "left": "Value #A",
+            "left": "{compression_mode=\"none\", description=\"replica:3\", instance=\"f08-h03-000-1029u:9283\", job=\"ceph\", name=\"rbd\", pool_id=\"2\", type=\"replicated\"}",
             "operator": "/",
             "reducer": "sum",
-            "right": "Value #B"
+            "right": "(sum((label_replace(sum by(id) (rate(container_cpu_usage_seconds_total{id=~\".*(ceph-.*)(osd).*.service\"}[30s])),\"shortname\",\"$2\", \"id\", \"(.*)@(.*)\"))) )"
           },
           "mode": "binary",
           "reduce": {
@@ -149,12 +149,10 @@
         "id": "organize",
         "options": {
           "excludeByName": {
+            "(sum((label_replace(sum by(id) (rate(container_cpu_usage_seconds_total{id=~\".*(ceph-.*)(osd).*.service\"}[30s])),\"shortname\",\"$2\", \"id\", \"(.*)@(.*)\"))) )": true,
             "Time": true,
-            "Value #A": true,
-            "Value #B": true,
-            "instance": true,
-            "job": true,
-            "pool_id": true
+            "{compression_mode=\"none\", description=\"replica:3\", instance=\"f08-h03-000-1029u:9283\", job=\"ceph\", name=\"rbd\", pool_id=\"2\", type=\"replicated\"}": true,
+            "{compression_mode=\"none\", description=\"replica:3\", instance=\"f08-h05-000-1029u:9283\", job=\"ceph\", name=\"rbd\", pool_id=\"2\", type=\"replicated\"}": true
           },
           "indexByName": {},
           "renameByName": {}
@@ -163,9 +161,9 @@
     ],
     "type": "stat"
   },
-  "name": "Physical Reads per Client Read",
+  "name": "IOPS per Core",
   "orgId": 1,
   "type": "stat",
-  "uid": "6BjBOwY4k",
+  "uid": "6WvLdwL4k",
   "version": 4
 }

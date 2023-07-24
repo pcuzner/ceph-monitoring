@@ -2,23 +2,23 @@
   "description": "",
   "folderId": 0,
   "folderUid": "",
-  "id": 35,
+  "id": 30,
   "kind": 1,
   "meta": {
-    "connectedDashboards": 2,
-    "created": "2023-04-17T02:11:37Z",
+    "connectedDashboards": 0,
+    "created": "2023-06-21T04:38:17Z",
     "createdBy": {
-      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-      "id": 2,
-      "name": "pcuzner"
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
     },
     "folderName": "General",
     "folderUid": "",
-    "updated": "2023-04-17T02:11:37Z",
+    "updated": "2023-06-23T05:05:58Z",
     "updatedBy": {
-      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-      "id": 2,
-      "name": "pcuzner"
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
     }
   },
   "model": {
@@ -35,7 +35,7 @@
         "custom": {
           "axisCenteredZero": false,
           "axisColorMode": "text",
-          "axisLabel": "",
+          "axisLabel": "Queue Size",
           "axisPlacement": "auto",
           "barAlignment": 0,
           "drawStyle": "line",
@@ -62,7 +62,6 @@
             "mode": "off"
           }
         },
-        "decimals": 0,
         "mappings": [],
         "min": 0,
         "thresholds": {
@@ -71,10 +70,6 @@
             {
               "color": "green",
               "value": null
-            },
-            {
-              "color": "red",
-              "value": 80
             }
           ]
         },
@@ -84,14 +79,11 @@
     },
     "gridPos": {
       "h": 8,
-      "w": 9,
+      "w": 12,
       "x": 0,
-      "y": 17
+      "y": 16
     },
-    "id": 22,
-    "libraryPanel": {
-      "name": " Per Pool IOPS"
-    },
+    "id": 27,
     "options": {
       "legend": {
         "calcs": [],
@@ -104,8 +96,7 @@
         "sort": "desc"
       }
     },
-    "repeat": "ceph_cluster",
-    "repeatDirection": "h",
+    "pluginVersion": "9.1.6",
     "targets": [
       {
         "datasource": {
@@ -113,18 +104,25 @@
           "uid": "${datasource}"
         },
         "editorMode": "code",
-        "expr": "(rate(ceph_pool_rd[40s]) + rate(ceph_pool_wr[40s])) * on(job,pool_id) group_right ceph_pool_metadata",
-        "legendFormat": "{{name}}",
+        "expr": "label_replace((rate(node_disk_io_time_weighted_seconds_total[30s])),\"host\",\"$1\",\"instance\",\"(.*):(.*)\") * on(host,device) group_left(ceph_daemon) label_replace(label_replace(ceph_disk_occupation,\"host\",\"$1\",\"instance\",\"(.*):(.*)\"),\"device\",\"$1\",\"device\",\"/dev/(.*)\")",
+        "hide": false,
+        "instant": false,
+        "legendFormat": "{{ceph_daemon}}",
         "range": true,
         "refId": "A"
       }
     ],
-    "title": " Per Pool IOPS",
-    "type": "timeseries"
+    "title": "OSD Device Queue Lengths",
+    "transformations": [],
+    "type": "timeseries",
+    "libraryPanel": {
+      "name": "OSD Device Queue Lengths",
+      "uid": "e74a0e1f-46ce-4710-a131-ca706d9180ae"
+    }
   },
-  "name": " Per Pool IOPS",
+  "name": "OSD Device Queue Lengths",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "pnk6SDE4z",
-  "version": 1
+  "uid": "e74a0e1f-46ce-4710-a131-ca706d9180ae",
+  "version": 4
 }

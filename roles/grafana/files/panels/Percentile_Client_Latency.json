@@ -58,28 +58,8 @@
     },
     "id": 129,
     "libraryPanel": {
-      "description": "Latency is calculated by a Prometheus recording rule",
-      "meta": {
-        "connectedDashboards": 1,
-        "created": "2023-04-10T22:16:32Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "General",
-        "folderUid": "",
-        "updated": "2023-04-10T22:26:16Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "Percentile Client Latency",
-      "type": "stat",
-      "uid": "E7DGcQY4z",
-      "version": 3
+      "uid": "b20b04ba-d318-4528-bec9-0baa363add21"
     },
     "options": {
       "colorMode": "none",
@@ -134,6 +114,6 @@
   "name": "Percentile Client Latency",
   "orgId": 1,
   "type": "stat",
-  "uid": "E7DGcQY4z",
+  "uid": "b20b04ba-d318-4528-bec9-0baa363add21",
   "version": 4
 }

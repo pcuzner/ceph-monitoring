@@ -90,7 +90,8 @@
     },
     "id": 149,
     "libraryPanel": {
-      "name": "OP Latency by RGW instance"
+      "name": "OP Latency by RGW instance",
+      "uid": "420988f8-c5a0-47b2-ba6f-b2de8f907193"
     },
     "options": {
       "legend": {
@@ -136,6 +137,6 @@
   "name": "OP Latency by RGW instance",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "jmG4fhu4z",
+  "uid": "420988f8-c5a0-47b2-ba6f-b2de8f907193",
   "version": 1
 }

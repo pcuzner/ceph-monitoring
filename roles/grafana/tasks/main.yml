@@ -32,7 +32,7 @@
     port: "{{ grafana_port }}/tcp"
     permanent: true
     state: enabled
-  when: ansible_facts.services['firewalld.service']['state'] == "running"   
+  when: ('firewalld.service' in ansible_facts.services.keys()) and (ansible_facts.services['firewalld.service']['state'] == "running")  
 
 - name: pull the grafana image
   shell: "podman pull {{ grafana_image }}:{{ grafana_tag }}"

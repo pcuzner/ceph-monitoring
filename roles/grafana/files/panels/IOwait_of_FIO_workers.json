@@ -91,26 +91,8 @@
     },
     "id": 247,
     "libraryPanel": {
-      "meta": {
-        "connectedDashboards": 0,
-        "created": "2023-05-23T04:54:34.622998567Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "",
-        "folderUid": "",
-        "updated": "2023-05-23T04:54:34.622998642Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "IOwait of FIO workers",
-      "uid": "3KvaI4w4k",
-      "version": 1
+      "uid": "58de5c2f-e8c4-493e-831d-0b5f4ab01ffc"
     },
     "options": {
       "legend": {
@@ -144,6 +126,6 @@
   "name": "IOwait of FIO workers",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "3KvaI4w4k",
+  "uid": "58de5c2f-e8c4-493e-831d-0b5f4ab01ffc",
   "version": 2
 }

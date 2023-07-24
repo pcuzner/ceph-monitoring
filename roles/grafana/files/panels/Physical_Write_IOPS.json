@@ -101,26 +101,8 @@
     },
     "id": 93,
     "libraryPanel": {
-      "meta": {
-        "connectedDashboards": 0,
-        "created": "2023-04-13T22:34:02.92206889Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "",
-        "folderUid": "",
-        "updated": "2023-04-13T22:34:02.922069007Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "Physical Write IOPS",
-      "uid": "dQTOMkE4k",
-      "version": 1
+      "uid": "6c46211a-642c-4dc5-9056-a430c4201499"
     },
     "options": {
       "legend": {
@@ -165,6 +147,6 @@
   "name": "Physical Write IOPS",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "dQTOMkE4k",
+  "uid": "6c46211a-642c-4dc5-9056-a430c4201499",
   "version": 2
 }

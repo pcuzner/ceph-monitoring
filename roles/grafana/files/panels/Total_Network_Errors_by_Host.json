@@ -85,7 +85,8 @@
     },
     "id": 206,
     "libraryPanel": {
-      "name": "Total Network Errors by Host"
+      "name": "Total Network Errors by Host",
+      "uid": "139d4a9c-b1b3-4b8f-8138-fea557f8ff51"
     },
     "options": {
       "legend": {
@@ -119,6 +120,6 @@
   "name": "Total Network Errors by Host",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "b2g57hXVk",
+  "uid": "139d4a9c-b1b3-4b8f-8138-fea557f8ff51",
   "version": 1
 }

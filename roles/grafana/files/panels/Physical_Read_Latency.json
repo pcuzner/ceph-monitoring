@@ -89,7 +89,8 @@
     },
     "id": 182,
     "libraryPanel": {
-      "name": "Physical Read Latency"
+      "name": "Physical Read Latency",
+      "uid": "3eb45e59-230f-4649-9cc8-1f79e3848817"
     },
     "options": {
       "legend": {
@@ -128,6 +129,6 @@
   "name": "Physical Read Latency",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "USGKGzE4z",
+  "uid": "3eb45e59-230f-4649-9cc8-1f79e3848817",
   "version": 1
 }

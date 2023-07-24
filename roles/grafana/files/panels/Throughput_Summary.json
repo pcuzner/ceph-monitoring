@@ -60,28 +60,8 @@
     },
     "id": 117,
     "libraryPanel": {
-      "description": "rbd pool throughput",
-      "meta": {
-        "connectedDashboards": 1,
-        "created": "2023-04-10T22:23:34Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "General",
-        "folderUid": "",
-        "updated": "2023-04-11T03:11:09Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "Throughput Summary",
-      "type": "stat",
-      "uid": "Dc71cwL4z",
-      "version": 3
+      "uid": "f953515f-1638-4a80-8622-801a8f91c64c"
     },
     "options": {
       "colorMode": "none",
@@ -142,6 +122,6 @@
   "name": "Throughput Summary",
   "orgId": 1,
   "type": "stat",
-  "uid": "Dc71cwL4z",
+  "uid": "f953515f-1638-4a80-8622-801a8f91c64c",
   "version": 4
 }

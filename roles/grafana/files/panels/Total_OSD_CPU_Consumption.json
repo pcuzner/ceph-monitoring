@@ -89,7 +89,8 @@
     },
     "id": 89,
     "libraryPanel": {
-      "name": "Total OSD CPU Consumption"
+      "name": "Total OSD CPU Consumption",
+      "uid": "ce4c4cad-67c5-485a-b97f-bb9fb3580cbf"
     },
     "options": {
       "legend": {
@@ -122,6 +123,6 @@
   "name": "Total OSD CPU Consumption",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "v_qPFQU4k",
+  "uid": "ce4c4cad-67c5-485a-b97f-bb9fb3580cbf",
   "version": 1
 }

@@ -89,26 +89,8 @@
     "id": 101,
     "interval": "5s",
     "libraryPanel": {
-      "meta": {
-        "connectedDashboards": 0,
-        "created": "2023-04-10T21:47:52.219135693Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "",
-        "folderUid": "",
-        "updated": "2023-04-10T21:47:52.219135893Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "Thread Analysis - timeseries chart",
-      "uid": "uRwoOwY4k",
-      "version": 1
+      "uid": "88a005af-ae86-480d-b6a3-67611ee5f10e"
     },
     "options": {
       "legend": {
@@ -143,6 +125,6 @@
   "name": "Thread Analysis - timeseries chart",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "uRwoOwY4k",
+  "uid": "88a005af-ae86-480d-b6a3-67611ee5f10e",
   "version": 2
 }

@@ -84,28 +84,8 @@
     },
     "id": 133,
     "libraryPanel": {
-      "description": "",
-      "meta": {
-        "connectedDashboards": 1,
-        "created": "2023-04-11T01:35:58Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "General",
-        "folderUid": "",
-        "updated": "2023-04-11T01:43:48Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "Physical IO/Size",
-      "type": "stat",
-      "uid": "WL21yQY4k",
-      "version": 2
+      "uid": "aa977afc-f7a5-4a64-ac47-e1308bf372a7"
     },
     "options": {
       "colorMode": "none",
@@ -159,6 +139,6 @@
   "name": "Physical IO/Size",
   "orgId": 1,
   "type": "stat",
-  "uid": "WL21yQY4k",
+  "uid": "aa977afc-f7a5-4a64-ac47-e1308bf372a7",
   "version": 3
 }

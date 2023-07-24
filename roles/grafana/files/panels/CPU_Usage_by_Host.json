@@ -91,26 +91,8 @@
     },
     "id": 8,
     "libraryPanel": {
-      "meta": {
-        "connectedDashboards": 0,
-        "created": "2023-04-04T05:02:03.157262108Z",
-        "createdBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        },
-        "folderName": "",
-        "folderUid": "",
-        "updated": "2023-04-04T05:02:03.157262172Z",
-        "updatedBy": {
-          "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-          "id": 2,
-          "name": "pcuzner"
-        }
-      },
       "name": "CPU Usage by Host",
-      "uid": "Lc8JiNY4z",
-      "version": 1
+      "uid": "7172ce67-b783-4437-93f0-abcfb16d7f12"
     },
     "options": {
       "legend": {
@@ -144,6 +126,6 @@
   "name": "CPU Usage by Host",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "Lc8JiNY4z",
+  "uid": "7172ce67-b783-4437-93f0-abcfb16d7f12",
   "version": 2
 }

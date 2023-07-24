@@ -19,6 +19,10 @@
   set_fact:
     title: "{{ jsondata | community.general.json_query('model.title') }}"
 
+- name: set uid
+  set_fact:
+    uid: "{{ jsondata | community.general.json_query('model.libraryPanel.uid') }}"
+
 - name: "Define the library panel {{ title }} to Grafana"
   ansible.builtin.uri:
     url: "http://{{ groups['grafana'][0] }}:{{ grafana_port }}/api/library-elements"
@@ -32,6 +36,7 @@
       {
         "model": {{ model }}, 
         "name": "{{ title }}",
-        "kind": 1
+        "kind": 1,
+        "uid": "{{ uid }}"
       }
 

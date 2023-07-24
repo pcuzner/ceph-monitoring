@@ -1,24 +1,24 @@
 {
-  "description": "",
+  "description": "Memory (RSS) used by each daemon",
   "folderId": 0,
   "folderUid": "",
-  "id": 56,
+  "id": 66,
   "kind": 1,
   "meta": {
-    "connectedDashboards": 2,
-    "created": "2023-05-29T20:55:23Z",
+    "connectedDashboards": 0,
+    "created": "2023-06-23T04:05:34Z",
     "createdBy": {
-      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-      "id": 2,
-      "name": "pcuzner"
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
     },
     "folderName": "General",
     "folderUid": "",
-    "updated": "2023-05-29T20:55:23Z",
+    "updated": "2023-06-23T04:05:34Z",
     "updatedBy": {
-      "avatarUrl": "/avatar/65bab2d222c97fa044b642aa2ce8fe58",
-      "id": 2,
-      "name": "pcuzner"
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
     }
   },
   "model": {
@@ -26,7 +26,7 @@
       "type": "prometheus",
       "uid": "${datasource}"
     },
-    "description": "",
+    "description": "Memory (RSS) used by each daemon",
     "fieldConfig": {
       "defaults": {
         "color": {
@@ -39,7 +39,7 @@
           "axisPlacement": "auto",
           "barAlignment": 0,
           "drawStyle": "line",
-          "fillOpacity": 0,
+          "fillOpacity": 10,
           "gradientMode": "none",
           "hideFrom": {
             "legend": false,
@@ -52,8 +52,8 @@
           "scaleDistribution": {
             "type": "linear"
           },
-          "showPoints": "auto",
-          "spanNulls": false,
+          "showPoints": "never",
+          "spanNulls": true,
           "stacking": {
             "group": "A",
             "mode": "none"
@@ -62,7 +62,10 @@
             "mode": "off"
           }
         },
+        "decimals": 2,
+        "links": [],
         "mappings": [],
+        "min": 0,
         "thresholds": {
           "mode": "absolute",
           "steps": [
@@ -76,33 +79,41 @@
             }
           ]
         },
-        "unit": "binBps"
+        "unit": "bytes"
       },
       "overrides": []
     },
     "gridPos": {
       "h": 10,
-      "w": 7,
-      "x": 9,
-      "y": 18
+      "w": 8,
+      "x": 8,
+      "y": 8
     },
-    "id": 49,
+    "id": 19,
     "libraryPanel": {
-      "name": "RBD Pool Recovery Bandwidth"
+      "name": "Ceph Daemon Memory Usage",
+      "uid": "ce1b052c-fbfc-4fc0-86f8-1bbaa6aa4a88"
     },
     "options": {
       "legend": {
-        "calcs": [],
-        "displayMode": "list",
+        "calcs": [
+          "min",
+          "last",
+          "max"
+        ],
+        "displayMode": "table",
         "placement": "bottom",
-        "showLegend": false
+        "showLegend": true,
+        "sortBy": "Max",
+        "sortDesc": true
       },
       "tooltip": {
         "mode": "multi",
-        "sort": "none"
+        "sort": "desc"
       }
     },
-    "pluginVersion": "9.1.6",
+    "pluginVersion": "8.4.4",
+    "repeatDirection": "h",
     "targets": [
       {
         "datasource": {
@@ -110,19 +121,21 @@
           "uid": "${datasource}"
         },
         "editorMode": "code",
-        "expr": "ceph_pool_recovering_bytes_per_sec * on(pool_id) group_right ceph_pool_metadata{name=\"rbd\"}",
-        "format": "time_series",
-        "legendFormat": "{{name}}",
+        "expr": "ceph_process_rss_size_bytes",
+        "hide": false,
+        "instant": false,
+        "legendFormat": "{{daemon}}",
         "range": true,
-        "refId": "A"
+        "refId": "B"
       }
     ],
-    "title": "RBD Pool Recovery Bandwidth",
+    "title": "Ceph Daemon Memory Usage",
+    "transformations": [],
     "type": "timeseries"
   },
-  "name": "RBD Pool Recovery Bandwidth",
+  "name": "Ceph Daemon Memory Usage",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "0Aj3csQVk",
+  "uid": "ce1b052c-fbfc-4fc0-86f8-1bbaa6aa4a88",
   "version": 1
 }

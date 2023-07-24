@@ -1,0 +1,101 @@
+{
+  "description": "Current OSD CPU Consumption (cores)",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 67,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-28T03:20:37Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-28T03:20:37Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "Current OSD CPU Consumption (cores)",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "fixed"
+        },
+        "decimals": 2,
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 4,
+      "w": 3,
+      "x": 0,
+      "y": 0
+    },
+    "id": 22,
+    "libraryPanel": {
+      "name": "OSD CPU Usage",
+      "uid": "ab828bfb-25d6-4259-9c08-15b0495cfd30"
+    },
+    "options": {
+      "colorMode": "none",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "auto",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "10.0.0",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "(sum(rate(ceph_process_cpu_kernel_seconds_total{daemon=~\"osd.*\"}[30s])) + sum(rate(ceph_process_cpu_user_seconds_total{daemon=~\"osd.*\"}[30s]))) /100",
+        "instant": false,
+        "range": true,
+        "refId": "A"
+      }
+    ],
+    "title": "OSD CPU Usage",
+    "type": "stat"
+  },
+  "name": "OSD CPU Usage",
+  "orgId": 1,
+  "type": "stat",
+  "uid": "ab828bfb-25d6-4259-9c08-15b0495cfd30",
+  "version": 1
+}

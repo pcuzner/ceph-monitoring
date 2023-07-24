@@ -1,0 +1,173 @@
+{
+  "description": "Total physical IOPS across the cluster by type",
+  "folderId": 0,
+  "folderUid": "",
+  "id": 41,
+  "kind": 1,
+  "meta": {
+    "connectedDashboards": 0,
+    "created": "2023-06-21T04:38:28Z",
+    "createdBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    },
+    "folderName": "General",
+    "folderUid": "",
+    "updated": "2023-06-23T05:02:43Z",
+    "updatedBy": {
+      "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
+      "id": 1,
+      "name": "admin"
+    }
+  },
+  "model": {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${datasource}"
+    },
+    "description": "Total physical IOPS across the cluster by type",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisCenteredZero": false,
+          "axisColorMode": "text",
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "auto",
+          "spanNulls": false,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
+            }
+          ]
+        },
+        "unit": "locale"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 0
+    },
+    "id": 31,
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom",
+        "showLegend": true
+      },
+      "tooltip": {
+        "mode": "multi",
+        "sort": "desc"
+      }
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum ((label_replace((rate(node_disk_reads_completed_total[30s])),\"host\",\"$1\",\"instance\",\"(.*):(.*)\") ) * on(host,device) group_left(ceph_daemon) label_replace(label_replace(ceph_disk_occupation,\"host\",\"$1\",\"instance\",\"(.*):(.*)\"),\"device\",\"$1\",\"device\",\"/dev/(.*)\"))",
+        "hide": false,
+        "instant": false,
+        "legendFormat": "Reads",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum ((label_replace((rate(node_disk_writes_completed_total[30s])),\"host\",\"$1\",\"instance\",\"(.*):(.*)\") ) * on(host,device) group_left(ceph_daemon) label_replace(label_replace(ceph_disk_occupation,\"host\",\"$1\",\"instance\",\"(.*):(.*)\"),\"device\",\"$1\",\"device\",\"/dev/(.*)\"))",
+        "hide": false,
+        "instant": false,
+        "legendFormat": "Writes",
+        "range": true,
+        "refId": "C"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "editorMode": "code",
+        "expr": "sum ((label_replace((rate(node_disk_reads_completed_total[30s])),\"host\",\"$1\",\"instance\",\"(.*):(.*)\") + label_replace((rate(node_disk_writes_completed_total[30s])),\"host\",\"$1\",\"instance\",\"(.*):(.*)\")) * on(host,device) group_left(ceph_daemon) label_replace(label_replace(ceph_disk_occupation,\"host\",\"$1\",\"instance\",\"(.*):(.*)\"),\"device\",\"$1\",\"device\",\"/dev/(.*)\"))",
+        "hide": false,
+        "instant": false,
+        "legendFormat": "Total",
+        "range": true,
+        "refId": "B"
+      }
+    ],
+    "title": "Cluster Physical IOPS",
+    "transformations": [
+      {
+        "id": "calculateField",
+        "options": {
+          "alias": "Total IOPS",
+          "binary": {
+            "left": "Total Write IOPS",
+            "reducer": "sum",
+            "right": "Total Read IOPS"
+          },
+          "mode": "binary",
+          "reduce": {
+            "reducer": "sum"
+          }
+        }
+      }
+    ],
+    "type": "timeseries",
+    "libraryPanel": {
+      "name": "Cluster Physical IOPS",
+      "uid": "efb2558b-3d0c-4cc0-8780-d328af813663"
+    }
+  },
+  "name": "Cluster Physical IOPS",
+  "orgId": 1,
+  "type": "timeseries",
+  "uid": "efb2558b-3d0c-4cc0-8780-d328af813663",
+  "version": 3
+}

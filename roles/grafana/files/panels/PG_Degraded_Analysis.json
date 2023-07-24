@@ -1,12 +1,12 @@
 {
-  "description": "Network receive + transmit bytes for all active (UP) physical interfaces on each host in the cluster",
+  "description": "",
   "folderId": 0,
   "folderUid": "",
-  "id": 68,
+  "id": 75,
   "kind": 1,
   "meta": {
     "connectedDashboards": 0,
-    "created": "2023-06-20T03:20:21Z",
+    "created": "2023-06-27T04:28:20Z",
     "createdBy": {
       "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
       "id": 1,
@@ -14,7 +14,7 @@
     },
     "folderName": "General",
     "folderUid": "",
-    "updated": "2023-06-20T03:20:21Z",
+    "updated": "2023-06-27T04:28:20Z",
     "updatedBy": {
       "avatarUrl": "/avatar/46d229b033af06a191ff2267bca9ae56",
       "id": 1,
@@ -26,7 +26,7 @@
       "type": "prometheus",
       "uid": "${datasource}"
     },
-    "description": "Network receive + transmit bytes for all active (UP) physical interfaces on each host in the cluster",
+    "description": "",
     "fieldConfig": {
       "defaults": {
         "color": {
@@ -39,8 +39,8 @@
           "axisPlacement": "auto",
           "barAlignment": 0,
           "drawStyle": "line",
-          "fillOpacity": 20,
-          "gradientMode": "hue",
+          "fillOpacity": 0,
+          "gradientMode": "none",
           "hideFrom": {
             "legend": false,
             "tooltip": false,
@@ -63,29 +63,32 @@
           }
         },
         "mappings": [],
-        "min": 0,
         "thresholds": {
           "mode": "absolute",
           "steps": [
             {
               "color": "green",
               "value": null
+            },
+            {
+              "color": "red",
+              "value": 80
             }
           ]
-        },
-        "unit": "binBps"
+        }
       },
       "overrides": []
     },
     "gridPos": {
       "h": 8,
-      "w": 9,
-      "x": 12,
-      "y": 14
+      "w": 12,
+      "x": 0,
+      "y": 16
     },
-    "id": 12,
+    "id": 47,
     "libraryPanel": {
-      "name": "Total Network Bandwidth by Host"
+      "name": "PG Degraded Analysis",
+      "uid": "d8f8fc2f-23aa-4154-9cd0-257c2071f420"
     },
     "options": {
       "legend": {
@@ -96,7 +99,7 @@
       },
       "tooltip": {
         "mode": "multi",
-        "sort": "desc"
+        "sort": "none"
       }
     },
     "targets": [
@@ -106,43 +109,18 @@
           "uid": "${datasource}"
         },
         "editorMode": "code",
-        "expr": "(sum by(host) (label_replace(rate(node_network_receive_bytes_total{device=~\"(eth|en).*\"}[1m]),\"host\",\"$1\",\"instance\",\"(.*):9100\") * on(instance, device,host) label_replace(node_network_info{operstate=\"up\",job=\"node-exporter\"},\"host\",\"$1\",\"instance\",\"(.*):9100\")))",
-        "hide": true,
-        "legendFormat": "{{host}}",
+        "expr": "ceph_pg_degraded * on(pool_id) group_right ceph_pool_metadata",
+        "legendFormat": "{{name}}",
         "range": true,
         "refId": "A"
-      },
-      {
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${datasource}"
-        },
-        "editorMode": "code",
-        "expr": "sum by(instance) (rate(node_network_transmit_bytes_total{device=~\"(eth|en).*\"}[1m]) * on(instance, device) node_network_info{operstate=\"up\"})",
-        "hide": true,
-        "legendFormat": "{{instance}}/TX",
-        "range": true,
-        "refId": "B"
-      },
-      {
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${datasource}"
-        },
-        "editorMode": "code",
-        "expr": "(sum by(instance) (rate(node_network_receive_bytes_total{device=~\"(eth|en).*\"}[1m]) * on(instance, device) node_network_info{operstate=\"up\",job=\"node-exporter\"})) +\n(sum by(instance) (rate(node_network_transmit_bytes_total{device=~\"(eth|en).*\"}[1m]) * on(instance, device) node_network_info{operstate=\"up\", job=\"node-exporter\"}))",
-        "hide": false,
-        "legendFormat": "{{instance}}",
-        "range": true,
-        "refId": "C"
       }
     ],
-    "title": "Total Network Bandwidth by Host",
+    "title": "PG Degraded Analysis",
     "type": "timeseries"
   },
-  "name": "Total Network Bandwidth by Host",
+  "name": "PG Degraded Analysis",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "rbrOnhXVz",
+  "uid": "d8f8fc2f-23aa-4154-9cd0-257c2071f420",
   "version": 1
 }

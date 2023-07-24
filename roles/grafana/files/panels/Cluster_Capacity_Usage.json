@@ -89,7 +89,8 @@
     },
     "id": 11,
     "libraryPanel": {
-      "name": "Cluster Capacity Usage"
+      "name": "Cluster Capacity Usage",
+      "uid": "f8e24407-0c69-4374-be3f-5440eaccb9fd"
     },
     "options": {
       "legend": {
@@ -148,6 +149,6 @@
   "name": "Cluster Capacity Usage",
   "orgId": 1,
   "type": "timeseries",
-  "uid": "K1AXX3S4z",
+  "uid": "f8e24407-0c69-4374-be3f-5440eaccb9fd",
   "version": 1
 }

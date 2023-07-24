@@ -57,7 +57,8 @@
     },
     "id": 78,
     "libraryPanel": {
-      "name": "RBD Count"
+      "name": "RBD Count",
+      "uid": "59585725-acb6-4929-91d7-24af60e91994"
     },
     "options": {
       "colorMode": "none",
@@ -96,6 +97,6 @@
   "name": "RBD Count",
   "orgId": 1,
   "type": "stat",
-  "uid": "MtOY0zPVk",
+  "uid": "59585725-acb6-4929-91d7-24af60e91994",
   "version": 1
 }

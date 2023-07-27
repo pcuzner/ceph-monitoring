@@ -78,5 +78,5 @@
     library_panels: "{{ lookup('ansible.builtin.fileglob', 'panels/*.json', wantlist=True) }}"
 
 - name: Define the library panels to Grafana
-  ansible.builtin.include_tasks: load_panel.yml
-  loop: "{{ library_panels }}"
+  ansible.builtin.import_tasks: import_panel_loader.yml
+  delegate_to: localhost

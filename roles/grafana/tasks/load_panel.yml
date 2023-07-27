@@ -1,27 +1,21 @@
 ---
-- name: extract the model from the panel file
-  shell: "cat {{ item }}"
-  register: raw_file
+- name: extract model
+  shell: 'cat "{{ item }}" | jq .model'
+  register: model
 
-#- name: extract panel title
-#  shell: "cat /tmp/panel_model.json | jq .title"
-#  register: title
+- name: extract title
+  shell: 'cat "{{ item }}" | jq .model.title'
+  register: title
 
-- name: parse model into json format
-  set_fact: 
-    jsondata: "{{ raw_file.stdout | from_json }}"
+- name: extract uid
+  shell: 'cat "{{ item }}" | jq .model.libraryPanel.uid'
+  register: uid
 
-- name: Extract model
+- name: set fact
   set_fact:
-    model: "{{ jsondata | community.general.json_query('model') }}"
-
-- name: set title
-  set_fact:
-    title: "{{ jsondata | community.general.json_query('model.title') }}"
-
-- name: set uid
-  set_fact:
-    uid: "{{ jsondata | community.general.json_query('model.libraryPanel.uid') }}"
+    model: "{{ model.stdout | from_json }}"
+    title: "{{ title.stdout | from_json }}"
+    uid: "{{ uid.stdout | from_json }}"
 
 - name: "Define the library panel {{ title }} to Grafana"
   ansible.builtin.uri:

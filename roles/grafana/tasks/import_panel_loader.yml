@@ -1,0 +1,4 @@
+---
+- name: import load panel tasks
+  ansible.builtin.include_tasks: load_panel.yml
+  loop: "{{ library_panels }}"

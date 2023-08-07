@@ -7,7 +7,9 @@
     port: "{{ node_exporter_port }}/tcp"
     permanent: true
     state: enabled
-  when: ansible_facts.services['firewalld.service']['state'] == "running"   
+  when:
+    - "'firewalld.service' in ansible_facts.services" 
+    - ansible_facts.services['firewalld.service']['state'] == "running"   
 
 - name: pull the node_exporter image
   shell: "podman pull {{ node_exporter_image }}:{{ node_exporter_tag }}"

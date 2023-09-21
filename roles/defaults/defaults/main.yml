@@ -17,7 +17,7 @@ node_exporter_port: 9100
 process_exporter_image: docker.io/pcuzner/process-exporter
 process_exporter_tag: latest
 process_exporter_port: 9200
-process_exporter_daemons: "ceph-osd,ceph-mon,ceph-mgr,ceph-mds,radosgw"
+process_exporter_daemons: "ceph-osd,ceph-mon,ceph-mgr,ceph-mds,radosgw,ganesha.nfsd,haproxy,reactor_0"
 process_exporter_threads: false
 process_exporter_prefix: ceph
 

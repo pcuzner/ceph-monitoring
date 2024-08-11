@@ -6,6 +6,7 @@
   ansible.posix.firewalld:
     port: "{{ process_exporter_port }}/tcp"
     permanent: true
+    immediate: true
     state: enabled
   when: ('firewalld.service' in ansible_facts.services.keys()) and (ansible_facts.services['firewalld.service']['state'] == "running")
 

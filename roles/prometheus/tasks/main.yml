@@ -20,6 +20,7 @@
   ansible.posix.firewalld:
     port: "{{ prometheus_port }}/tcp"
     permanent: true
+    immediate: true    
     state: enabled
   when: 
     - "'firewalld.service' in ansible_facts.services" 
